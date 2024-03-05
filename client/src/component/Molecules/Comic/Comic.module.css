@@ -1,0 +1,66 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.image {
+    width: 100%;
+    height: 200px;
+    border: solid 1px var(--reverse-theme-color);
+    border-radius: var(--border-radius);
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+.image:hover {
+    transform: perspective(500px) translateZ(15px);
+} 
+.info {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    color: white;
+}
+.viewInfo,
+.voteInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 3px;
+    margin-left: 10px;
+}
+.comicName,
+.newestChapterContainer {
+    padding-inline: 5px;
+}
+.comicName {
+    width: fit-content;
+    margin: 5px 0 5px 0;
+    font-size: var(--medium-font-size);
+    font-weight: 500;
+}
+.newestChapterContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+.chapterContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 400;
+}
+.chapterContainer a:hover,
+.comicName:hover {
+    color: var(--main-color);
+}
+.postedTime {
+    color: var(--reverse-theme-color-50);
+    cursor:default;
+}

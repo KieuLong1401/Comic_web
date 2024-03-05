@@ -1,0 +1,21 @@
+.container {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.barsIcon {
+    background-color: transparent;
+    font-size: 30px;
+    color: var(--reverse-theme-color-50);
+}
+
+.dropDown {
+    box-shadow: 0 0 5px rgba(128, 128, 128, 0.2);
+    position: absolute;
+    top: var(--header-height);
+    right: 0px;
+    left: auto;
+    transform: none;
+}

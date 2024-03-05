@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum JudgeType {
+  LIKE
+  DISLIKE
+}
+
+model Comics {
+  id              String     @id
+  title           String     @unique
+  other_title     String?
+  comic_image_src String
+  author          String?
+  categories      String[]
+  storyline       String?
+  chapters        Chapters[]
+  following_users Follow[]
+  views           Views[]
+  vote            Votes[]
+}
+
+model Chapters {
+  id            Int        @id @default(autoincrement())
+  chap_order    Int
+  chap_num      Float
+  uploaded_time DateTime   @default(now()) @db.Timestamptz(3)
+  comic_id      String
+  comic         Comics     @relation(fields: [comic_id], references: [id], onDelete: Cascade)
+  comments      Comments[]
+  images        Images[]
+  views         Views[]
+}
+
+model Images {
+  id          Int      @id @default(autoincrement())
+  image_src   String
+  image_order Int
+  chapter_id  Int
+  chapter     Chapters @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+}
+
+model Users {
+  id              Int             @id @default(autoincrement())
+  name            String
+  user_id         String
+  password        String
+  comments        Comments[]
+  liked_comments  CommentsJudge[]
+  followed_comic  Follow[]
+  viewed_chapters Views[]
+  vote            Votes[]
+}
+
+model Views {
+  user_id    Int
+  chapter_id Int
+  comic_id   String
+  chapter    Chapters @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+  comic      Comics   @relation(fields: [comic_id], references: [id], onDelete: Cascade)
+  user       Users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, chapter_id])
+}
+
+model Follow {
+  user_id  Int
+  comic_id String
+  comic    Comics @relation(fields: [comic_id], references: [id], onDelete: Cascade)
+  user     Users  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, comic_id])
+}
+
+model Comments {
+  id                Int             @id @default(autoincrement())
+  content           String
+  uploaded_time     DateTime        @default(now()) @db.Timestamptz(3)
+  user_id           Int
+  chapter_id        Int
+  parent_comment_id Int?
+  chapter           Chapters        @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+  parent_comment    Comments?       @relation("nested_coment", fields: [parent_comment_id], references: [id], onDelete: Cascade)
+  children          Comments[]      @relation("nested_coment")
+  user              Users           @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  likes             CommentsJudge[]
+}
+
+model CommentsJudge {
+  comment_id Int
+  user_id    Int
+  type       JudgeType
+  comment    Comments  @relation(fields: [comment_id], references: [id], onDelete: Cascade)
+  user       Users     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@id([comment_id, user_id])
+}
+
+model Votes {
+  voted_point Float
+  user_id     Int
+  comic_id    String
+  comic       Comics @relation(fields: [comic_id], references: [id])
+  user        Users  @relation(fields: [user_id], references: [id])
+
+  @@id([user_id, comic_id])
+}

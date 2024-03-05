@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Chapters" ALTER COLUMN "uploaded_time" SET DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "Comments" ALTER COLUMN "uploaded_time" SET DEFAULT CURRENT_TIMESTAMP;

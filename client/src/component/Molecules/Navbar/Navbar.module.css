@@ -1,0 +1,112 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--medium-font-size);
+}
+
+.categoryBtn {
+    display: flex;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.categoryBtn h5 {
+    font-weight: 500;
+    font-size: var(--medium-font-size);
+}
+
+.triangleIcon {
+    width: 10px;
+}
+
+.categoryContainer {
+    width: var(--max-width);
+    height: min(600px, calc(100svh - 80px));
+    background-color: var(--theme-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0px 0px 5px var(--box-shadow-color);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: var(--header-height);
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.categories {
+    width: 100%;
+    height: calc(100% - 80px);
+    padding: 20px;
+    border-bottom: 2px solid var(--main-color);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-items: start;
+    row-gap: 20px;
+    column-gap: 50px;
+    overflow-x: auto;
+}
+
+.categoryItem {
+    width: 110px;
+}
+
+.container>a:hover,
+.container .categoryBtn:hover,
+.categoryItem:hover {
+    color: var(--main-color);
+}
+
+.description {
+    width: 100%;
+    height: 80px;
+    background-color: var(--reverse-theme-color-15);
+    padding: 10px;
+    color: var(--reverse-theme-color-50);
+}
+
+.dropDown {
+    width: 75vw;
+    height: calc(100dvh - var(--header-height));
+    background-color: var(--theme-color);
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    overflow-y: scroll;
+}
+
+.dropDown .categoryContainer {
+    width: 99%;
+    height: 50vh;
+    min-height: 300px;
+    max-height: none;
+    background-color: transparent;
+    box-shadow: none;
+    position: relative;
+    top: 0px !important;
+    left: 1% !important;
+    transform: none;
+    z-index: 10000;
+}
+
+.dropDown .categories {
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 10px;
+    border: none;
+    border-left: 2px solid var(--reverse-theme-color-50);
+    flex-wrap: nowrap;
+    overflow-y: auto;
+}
+
+.accountLinkContainer {
+    width: 100%;
+    padding-top: 10px;
+    border-top: solid 2px var(--main-color);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

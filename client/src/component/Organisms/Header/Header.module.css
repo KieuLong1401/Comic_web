@@ -1,0 +1,84 @@
+.container {
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--theme-color);
+    padding-inline: calc(calc(100vw - var(--max-width)) / 2);
+    border-bottom: 2px solid var(--main-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    color: var(--reverse-theme-color-75);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+.navbar {
+    margin-left: 15px;
+}
+
+.searchBar {
+    margin-right: 10px;
+    margin-left: auto;
+}
+
+.themeSwitch {
+    margin-right: 10px;
+    justify-self: flex-end;
+}
+
+.buttonContainer {
+    margin-right: 0;
+    display: flex;
+    justify-self: flex-end;
+    gap: 5px;
+}
+
+.buttonContainer>button {
+    width: 80px;
+    height: 30px;
+    border-radius: var(--border-radius);
+}
+
+.loginBtn {
+    background-color: var(--main-color);
+    color: var(--theme-color);
+}
+
+.registerBtn {
+    background-color: var(--theme-color);
+    border: solid 1px var(--reverse-theme-color-50);
+    color: var(--reverse-theme-color-75);
+}
+
+.loginBtn:hover,
+.registerBtn:hover {
+    filter: brightness(75%);
+}
+
+.menu {
+    padding-right: 10px;
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .logo {
+        margin-left: 10px;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .buttonContainer {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+}
