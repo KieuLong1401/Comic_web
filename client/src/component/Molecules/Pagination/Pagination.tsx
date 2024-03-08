@@ -54,13 +54,13 @@ const Pagination: React.FC<PaginationProps> = ({ page, lastPage }) => {
                     href={`/page/${page - 1}`}
                     className={page <= 1 ? styles.disable : ''}
                 >
-                    Trang trước
+                    Pre Page
                 </Link>
                 <Link
                     href={`/page/${page + 1}`}
                     className={page >= lastPage ? styles.disable : ''}
                 >
-                    Trang sau
+                    Next Page
                 </Link>
             </div>
             <div className={styles.rowPaginationContainer}>

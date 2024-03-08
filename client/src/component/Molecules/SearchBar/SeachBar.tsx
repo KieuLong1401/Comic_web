@@ -177,7 +177,7 @@ function SearchBar({ className }: { className: string }) {
                             </button>
                             <input
                                 type='text'
-                                placeholder='Tìm kiếm'
+                                placeholder='Search'
                                 value={searchValue}
                                 onChange={handleSearchValueChange}
                                 ref={searchInputRef}
@@ -196,7 +196,7 @@ function SearchBar({ className }: { className: string }) {
                             onClick={closeModel}
                             className={styles.modelCloseBtn}
                         >
-                            Hủy
+                            Cancel
                         </button>
                     </div>
                     <div className={styles.searchResult}>

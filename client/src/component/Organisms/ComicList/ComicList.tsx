@@ -32,7 +32,7 @@ const ComicList = async ({ page }: ComicListProps) => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Truyện mới</h1>
+            <h1 className={styles.title}>New Comics</h1>
             <div className={styles.comicsContainer}>
                 {comicsData.map((e, i: number) => {
                     return (

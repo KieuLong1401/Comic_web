@@ -26,18 +26,6 @@ function Menu({ className }: { className?: string }) {
             >
                 <Navbar menuDrop />
             </Tooltip>
-            {/* <Tooltip
-                className={styles.dropDown}
-                id='dropNav'
-                disableStyleInjection={true}
-                delayShow={0}
-                delayHide={0}
-                clickable
-                isOpen={true}
-                style={{ display: isShow ? 'block' : 'none' }}
-            >
-                <Navbar menuDrop />
-            </Tooltip> */}
         </div>
     )
 }

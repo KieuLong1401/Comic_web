@@ -21,10 +21,10 @@ export default function Header() {
             <ThemeSwitch className={styles.themeSwitch} />
             <div className={styles.buttonContainer}>
                 <button className={styles.loginBtn}>
-                    <Link href={'/login'}>Đăng Nhập</Link>
+                    <Link href={'/login'}>Login</Link>
                 </button>
                 <button className={styles.registerBtn}>
-                    <Link href={'/register'}>Đăng Ký</Link>
+                    <Link href={'/register'}>Sign up</Link>
                 </button>
             </div>
             <Menu className={styles.menu} />

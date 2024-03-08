@@ -10,13 +10,13 @@ function Footer() {
                 href={'/contact'}
                 className={styles.link}
             >
-                Liên hệ
+                Contact
             </Link>
             <Link
                 href={'/privacy-policy'}
                 className={styles.link}
             >
-                Chính sách bảo mật
+                Privacy Policy
             </Link>
         </div>
     )
