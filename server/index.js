@@ -12,8 +12,8 @@ const app = express()
 app.use(cors())
 router(app)
 
-app.listen(process.env.POST || 3000, (err) => {
+app.listen(3001, (err) => {
     if (err) throw err
     crawl()
-    console.log('listening on post', process.env.POST || 3000)
+    console.log('listening on post', 3001)
 })
