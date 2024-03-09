@@ -8,8 +8,8 @@ module.exports = async (comic_id, chapterList) => {
         const chap_order = chapterList.length - i
         const duplicated = await prisma.chapters.findFirst({
             where: {
-                comic_id: comic_id,
-                chap_order: chap_order,
+                comic_id,
+                chap_order,
             },
         })
         if (!duplicated) {
