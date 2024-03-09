@@ -4,8 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faStar } from '@fortawesome/free-solid-svg-icons'
-import getChapter from '@/services/getChapter'
-import { useEffect, useState } from 'react'
 
 interface comicProps {
     data: {
@@ -13,25 +11,13 @@ interface comicProps {
         title: string
         comic_image_src: string
         views: string
-        average_vote_point: number
+        vote: number
+        chapters: { chap_num: number; uploaded_time: string }[]
     }
 }
 
 const Comic: React.FC<comicProps> = async ({ data }) => {
-    const [newestChapters, setNewestChapters] = useState<any>([])
-
     const comicHref = '/comic/' + data.id
-
-    useEffect(() => {
-        ;(async () => {
-            try {
-                const result = await getChapter(data.id, 3)
-                setNewestChapters(result?.data)
-            } catch (err) {
-                console.log(err)
-            }
-        })()
-    }, [data.id])
 
     return (
         <div className={styles.container}>
@@ -43,6 +29,7 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                     src={data.comic_image_src}
                     alt=''
                     fill={true}
+                    sizes='(max-width: 768px) 100vw'
                 />
                 <div className={styles.info}>
                     <div className={styles.viewInfo}>
@@ -59,7 +46,7 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                             fontSize={13}
                             color='white'
                         />
-                        <span>{data.average_vote_point}</span>
+                        <span>{data.vote}</span>
                     </div>
                 </div>
             </Link>
@@ -70,7 +57,7 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                 {data.title}
             </Link>
             <div className={styles.newestChapterContainer}>
-                {newestChapters.map((e, i) => {
+                {data.chapters.map((e, i) => {
                     const currentTime: any = new Date()
                     const uploaded_time: any = new Date(e.uploaded_time)
 

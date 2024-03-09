@@ -1,7 +1,5 @@
 import styles from './ComicList.module.css'
 
-import { useEffect, useState } from 'react'
-
 import Comic from '@/component/Molecules/Comic/Comic'
 import Pagination from '@/component/Molecules/Pagination/Pagination'
 import getComics from '@/services/getComics'
@@ -11,30 +9,22 @@ interface ComicListProps {
 }
 
 const ComicList = async ({ page }: ComicListProps) => {
-    const [comicsData, setComicsData] = useState([])
-
-    useEffect(() => {
-        ;(async () => {
-            try {
-                const result = await getComics({
-                    type: [],
-                    sortBy: 'uploaded_time',
-                    sortType: 'desc',
-                    pageComicNum: 32,
-                    page: 1,
-                })
-                setComicsData(result?.data)
-            } catch (err) {
-                console.error(err)
-            }
-        })()
-    }, [])
+    const comicsData = (
+        await getComics({
+            categories: [],
+            sortBy: 'uploaded_time',
+            sortType: 'desc',
+            comicNumOfPage: 36,
+            page: 1,
+        })
+    )?.data
 
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>New Comics</h1>
+
             <div className={styles.comicsContainer}>
-                {comicsData.map((e, i: number) => {
+                {comicsData?.map((e, i: number) => {
                     return (
                         <Comic
                             data={e}

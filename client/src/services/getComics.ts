@@ -1,27 +1,27 @@
 import instance from '@/utils/axiosInstance'
 
 export default async ({
-    type = [],
+    categories = [],
     sortBy = 'uploaded_time',
     sortType = 'desc',
-    pageComicNum = 32,
+    comicNumOfPage = 32,
     page,
 }: {
-    type: string[]
+    categories: string[]
     sortBy: string
     sortType: string
-    pageComicNum: number
+    comicNumOfPage: number
     page: number
 }) => {
     try {
         const result = await instance({
-            url: 'page-num',
+            url: 'comicList',
             method: 'GET',
             params: {
-                type: JSON.stringify(type),
+                categories: JSON.stringify(categories),
                 sortBy,
                 sortType,
-                pageComicNum,
+                comicNumOfPage,
                 page,
             },
         })

@@ -29,44 +29,80 @@ module.exports = {
         const categories = JSON.parse(req.query.categories)
         const sortBy = req.query.sortBy
         const sortType = req.query.sortType
-        const pageComicNum = req.query.pageComicNum
+        const comicNumOfPage = parseInt(req.query.comicNumOfPage)
 
         try {
-            const newestComic = await prisma.$queryRaw`
-                SELECT c.id, c.title, c.comic_image_src, v.views, COALESCE(ROUND(vt.average_vote_point::decimal, 1), 0) AS average_vote_point, c.categories
-                FROM "public"."Comics" c 
-                LEFT JOIN (
-                    SELECT MAX(uploaded_time) AS last_uploaded_time, comic_id
-                    FROM "public"."Chapters"
-                    GROUP BY comic_id
-                ) ch 
-                ON c.id = ch.comic_id
-                LEFT JOIN (
-                    SELECT COUNT(*) AS views, comic_id
-                    FROM "public"."Views"
-                    GROUP BY comic_id
-                ) v
-                ON c.id = v.comic_id
-                LEFT JOIN (
-                    SELECT AVG(voted_point) AS average_vote_point, comic_id
-                    FROM "public"."Votes"
-                    GROUP BY comic_id
-                ) vt
-                ON c.id = vt.comic_id
-                WHERE c.categories @> ${categories}
-                ORDER BY ch.last_uploaded_time desc
-                OFFSET ${(page - 1) * 32}
-                LIMIT 32
-            `
-
-            newestComic.forEach((result) => {
-                result.views = Number(result.views)
-                result.average_vote_point = parseFloat(
-                    result.average_vote_point
-                )
+            const comics = await prisma.comics.findMany({
+                where: {
+                    categories: {
+                        hasEvery: categories,
+                    },
+                },
+                include: {
+                    chapters: {
+                        select: {
+                            chap_num: true,
+                            uploaded_time: true,
+                        },
+                        orderBy: {
+                            chap_order: 'desc',
+                        },
+                        take: 3,
+                    },
+                },
+                take: comicNumOfPage,
+                skip: (page - 1) * 32 || 0,
+            })
+            const comicsLastUploadedTime = await prisma.chapters.groupBy({
+                by: ['comic_id'],
+                _max: {
+                    uploaded_time: true,
+                },
+                orderBy: {
+                    _max: {
+                        uploaded_time: 'desc',
+                    },
+                },
+            })
+            const comicsViews = await prisma.views.groupBy({
+                by: ['comic_id'],
+                _count: {
+                    _all: true,
+                },
+            })
+            const comicsAverageVote = await prisma.votes.groupBy({
+                by: ['comic_id'],
+                _avg: {
+                    voted_point: true,
+                },
             })
 
-            res.json(newestComic)
+            var result = comics.map((comic) => {
+                const views = comicsViews.find((e) => e.comic_id == comic.id)
+                const vote = comicsAverageVote.find(
+                    (e) => e.comic_id == comic.id
+                )
+                const uploaded_time = comicsLastUploadedTime.find(
+                    (e) => e.comic_id == comic.id
+                )._max.uploaded_time
+                return {
+                    ...comic,
+                    uploaded_time,
+                    views: views != undefined ? views._count._all : 0,
+                    vote:
+                        vote != undefined
+                            ? vote._avg.voted_point.toFixed(1)
+                            : 0,
+                }
+            })
+
+            result = result.sort((comic1, comic2) => {
+                return sortType == 'desc'
+                    ? comic2[sortBy] - comic1[sortBy]
+                    : comic1[sortBy] - comic2[sortBy]
+            })
+
+            res.json(result)
         } catch (err) {
             console.error(err)
         }
