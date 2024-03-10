@@ -5,8 +5,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname:
-                    process.env.NEXT_PUBLIC_IMG_HOST || 'www.nettruyenus.net',
+                hostname: process.env.NEXT_PUBLIC_IMG_HOST,
                 port: '',
                 pathname: '/**',
             },

@@ -26,6 +26,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ data }) => (
                     src={data.imgSrc}
                     alt='search result image'
                     fill={true}
+                    unoptimized={true}
                 />
             </Link>
             <div className={styles.info}>
