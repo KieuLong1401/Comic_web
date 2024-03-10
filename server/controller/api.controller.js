@@ -32,7 +32,6 @@ module.exports = {
         const page_comic_num = parseInt(req.query.page_comic_num)
 
         try {
-            console.log(page_comic_num)
             const comics = await prisma.comics.findMany({
                 where: {
                     categories: {
@@ -52,7 +51,7 @@ module.exports = {
                     },
                 },
                 take: page_comic_num,
-                skip: (page - 1) * 32 || 0,
+                skip: (page - 1) * page_comic_num || 0,
             })
             const comicsLastUploadedTime = await prisma.chapters.groupBy({
                 by: ['comic_id'],

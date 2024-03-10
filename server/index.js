@@ -9,7 +9,13 @@ const crawl = require('./libs/crawl/crawl.js')
 
 //app set up
 const app = express()
-app.use(cors())
+app.use(
+    cors({
+        origin: ['https://comic-web-seven.vercel.app'],
+        methods: ['POST', 'GET'],
+        credentials: true,
+    })
+)
 router(app)
 
 app.listen(3001, (err) => {
