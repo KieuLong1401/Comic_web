@@ -2,15 +2,15 @@ import instance from '@/utils/axiosInstance'
 
 export default async ({
     categories = [],
-    sortBy = 'uploaded_time',
-    sortType = 'desc',
-    comicNumOfPage = 32,
+    sort_by = 'uploaded_time',
+    sort_type = 'desc',
+    page_comic_num = 36,
     page,
 }: {
     categories: string[]
-    sortBy: string
-    sortType: string
-    comicNumOfPage: number
+    sort_by: string
+    sort_type: string
+    page_comic_num: number
     page: number
 }) => {
     try {
@@ -19,9 +19,9 @@ export default async ({
             method: 'GET',
             params: {
                 categories: JSON.stringify(categories),
-                sortBy,
-                sortType,
-                comicNumOfPage,
+                sort_by,
+                sort_type,
+                page_comic_num,
                 page,
             },
         })

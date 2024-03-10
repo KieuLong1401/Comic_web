@@ -12,9 +12,9 @@ const ComicList = async ({ page }: ComicListProps) => {
     const comicsData = (
         await getComics({
             categories: [],
-            sortBy: 'uploaded_time',
-            sortType: 'desc',
-            comicNumOfPage: 36,
+            sort_by: 'uploaded_time',
+            sort_type: 'desc',
+            page_comic_num: 36,
             page: 1,
         })
     )?.data

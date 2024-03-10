@@ -27,11 +27,12 @@ module.exports = {
     async getComics(req, res) {
         const page = parseInt(req.query.page)
         const categories = JSON.parse(req.query.categories)
-        const sortBy = req.query.sortBy
-        const sortType = req.query.sortType
-        const comicNumOfPage = parseInt(req.query.comicNumOfPage)
+        const sort_by = req.query.sort_by
+        const sort_type = req.query.sort_type
+        const page_comic_num = parseInt(req.query.page_comic_num)
 
         try {
+            console.log(page_comic_num)
             const comics = await prisma.comics.findMany({
                 where: {
                     categories: {
@@ -50,7 +51,7 @@ module.exports = {
                         take: 3,
                     },
                 },
-                take: comicNumOfPage,
+                take: page_comic_num,
                 skip: (page - 1) * 32 || 0,
             })
             const comicsLastUploadedTime = await prisma.chapters.groupBy({
@@ -97,9 +98,9 @@ module.exports = {
             })
 
             result = result.sort((comic1, comic2) => {
-                return sortType == 'desc'
-                    ? comic2[sortBy] - comic1[sortBy]
-                    : comic1[sortBy] - comic2[sortBy]
+                return sort_type == 'desc'
+                    ? comic2[sort_by] - comic1[sort_by]
+                    : comic1[sort_by] - comic2[sort_by]
             })
 
             res.json(result)
