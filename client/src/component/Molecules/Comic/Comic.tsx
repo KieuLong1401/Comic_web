@@ -31,6 +31,7 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                     fill={true}
                     sizes='(max-width: 768px) 100vw'
                     unoptimized={true}
+                    crossOrigin='anonymous'
                 />
                 <div className={styles.info}>
                     <div className={styles.viewInfo}>

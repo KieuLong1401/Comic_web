@@ -27,6 +27,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ data }) => (
                     alt='search result image'
                     fill={true}
                     unoptimized={true}
+                    crossOrigin='anonymous'
                 />
             </Link>
             <div className={styles.info}>
