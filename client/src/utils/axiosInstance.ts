@@ -2,5 +2,5 @@ import axios from 'axios'
 
 export default axios.create({
     baseURL: process.env.NEXT_PUBLIC_SERVER_HOST,
-    timeout: 1000,
+    timeout: 10000,
 })
