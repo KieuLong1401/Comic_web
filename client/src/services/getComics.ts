@@ -7,10 +7,10 @@ export default async ({
     page_comic_num = 36,
     page,
 }: {
-    categories: string[]
-    sort_by: string
-    sort_type: string
-    page_comic_num: number
+    categories?: string[]
+    sort_by?: string
+    sort_type?: string
+    page_comic_num?: number
     page: number
 }) => {
     try {

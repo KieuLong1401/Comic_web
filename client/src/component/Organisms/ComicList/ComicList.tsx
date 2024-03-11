@@ -11,11 +11,7 @@ interface ComicListProps {
 const ComicList = async ({ page }: ComicListProps) => {
     const comicsData = (
         await getComics({
-            categories: [],
-            sort_by: 'uploaded_time',
-            sort_type: 'desc',
-            page_comic_num: 36,
-            page: 1,
+            page,
         })
     )?.data
 
@@ -24,7 +20,7 @@ const ComicList = async ({ page }: ComicListProps) => {
             <h1 className={styles.title}>New Comics</h1>
 
             <div className={styles.comicsContainer}>
-                {comicsData?.map((e, i: number) => {
+                {comicsData?.comics.map((e, i: number) => {
                     return (
                         <Comic
                             data={e}
@@ -36,7 +32,7 @@ const ComicList = async ({ page }: ComicListProps) => {
             <div className={styles.pagination}>
                 <Pagination
                     page={page}
-                    lastPage={30}
+                    lastPage={comicsData.page}
                 />
             </div>
         </div>

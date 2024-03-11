@@ -3,12 +3,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 20px;
 }
 .rowPaginationContainer {
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 5px;
 }
 .pageLink {
@@ -33,7 +35,8 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    column-gap: 20px;
 }
 .preNextBtnContainer a {
     width: 100px;

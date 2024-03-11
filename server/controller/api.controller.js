@@ -33,12 +33,12 @@ module.exports = {
 
         try {
             const comics = await prisma.comics.findMany({
-                where: {
-                    categories: {
-                        hasEvery: categories,
-                    },
-                },
-                include: {
+                select: {
+                    id: true,
+                    title: true,
+                    comic_image_src: true,
+                    views: true,
+                    vote: true,
                     chapters: {
                         select: {
                             chap_num: true,
@@ -48,6 +48,11 @@ module.exports = {
                             chap_order: 'desc',
                         },
                         take: 3,
+                    },
+                },
+                where: {
+                    categories: {
+                        hasEvery: categories,
                     },
                 },
                 take: page_comic_num,
@@ -102,7 +107,10 @@ module.exports = {
                     : comic1[sort_by] - comic2[sort_by]
             })
 
-            res.json(result)
+            res.json({
+                comics: result,
+                page: Math.ceil(comics.length / page_comic_num)
+            })
         } catch (err) {
             console.error(err)
         }
