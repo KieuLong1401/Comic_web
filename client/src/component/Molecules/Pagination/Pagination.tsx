@@ -51,13 +51,13 @@ const Pagination: React.FC<PaginationProps> = ({ page, lastPage }) => {
         <div className={styles.container}>
             <div className={styles.preNextBtnContainer}>
                 <Link
-                    href={`/page/${page - 1}`}
+                    href={`/?page=${page - 1}`}
                     className={page <= 1 ? styles.disable : ''}
                 >
                     Pre Page
                 </Link>
                 <Link
-                    href={`/page/${page + 1}`}
+                    href={`/?page=${page + 1}`}
                     className={page >= lastPage ? styles.disable : ''}
                 >
                     Next Page
@@ -87,7 +87,7 @@ const Pagination: React.FC<PaginationProps> = ({ page, lastPage }) => {
                                 href={
                                     startPage + i == 1
                                         ? '/'
-                                        : `/page/${startPage + i}`
+                                        : `/?page=${startPage + i}`
                                 }
                                 className={`${styles.pageLink} ${
                                     page == startPage + i && styles.active
@@ -102,7 +102,7 @@ const Pagination: React.FC<PaginationProps> = ({ page, lastPage }) => {
                     <>
                         <span>...</span>
                         <Link
-                            href={`/page/${lastPage}`}
+                            href={`/?page=${lastPage}`}
                             className={`${styles.pageLink}`}
                         >
                             {lastPage}
@@ -123,7 +123,7 @@ const Pagination: React.FC<PaginationProps> = ({ page, lastPage }) => {
                     onChange={handleChangePageInputValue}
                 />
                 <Link
-                    href={`/page/${pageInputValue}`}
+                    href={`/?page=${pageInputValue}`}
                     className={`${inputErr != null && styles.disable}`}
                 >
                     Đến
