@@ -25,11 +25,13 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                 href={comicHref}
                 className={styles.image}
             >
-                <Image
+                <img
                     src={data.comic_image_src}
                     alt=''
-                    fill={true}
-                    priority
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                    }}
                 />
                 <div className={styles.info}>
                     <div className={styles.viewInfo}>
