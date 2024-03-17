@@ -13,7 +13,7 @@ function Footer() {
                 Contact
             </Link>
             <Link
-                href={'/privacy-policy'}
+                href={'/privacy_policy'}
                 className={styles.link}
             >
                 Privacy Policy
