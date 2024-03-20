@@ -8,22 +8,29 @@ module.exports = async (chapter_id, chapUrl) => {
     const imageList = $chapter('img', '.page-chapter')
 
     imageList.each(async (image_order, image) => {
-        const image_src = image.attribs['data-src']
+        setTimeout(async () => {
+            try {
+                const image_src = image.attribs['data-src']
 
-        const duplicated = await prisma.images.findFirst({
-            where: {
-                chapter_id,
-                image_order,
-            },
-        })
-        if (!duplicated) {
-            const image = await prisma.images.create({
-                data: {
-                    image_src,
-                    image_order,
-                    chapter_id,
-                },
-            })
-        }
+                const duplicated = await prisma.images.findFirst({
+                    where: {
+                        chapter_id,
+                        image_order,
+                    },
+                })
+                if (!duplicated) {
+                    console.log(image_src)
+                    // const image = await prisma.images.create({
+                    //     data: {
+                    //         image_src,
+                    //         image_order,
+                    //         chapter_id,
+                    //     },
+                    // })
+                }
+            } catch (err) {
+                throw err.message
+            }
+        }, 1000 * image_order)
     })
 }
