@@ -3,16 +3,17 @@ const chapterCrawl = require('./chapter.crawl')
 
 const prisma = new Prisma.PrismaClient()
 
-module.exports = async (id, $comic) => {
-    const chapterList = $comic('.chapter', '.list-chapter')
-
-    const comicDuplicated = await prisma.comics.findUnique({
-        where: {
-            id,
-        },
-    })
-    setTimeout(async () => {
+module.exports = (id, $comic) => {
+    return new Promise(async (resolve, reject) => {
         try {
+            const chapterList = $comic('.chapter', '.list-chapter')
+
+            const comicDuplicated = await prisma.comics.findUnique({
+                where: {
+                    id,
+                },
+            })
+
             if (!comicDuplicated) {
                 let title = $comic('.title-detail', '#item-detail')
                     .contents()
@@ -39,12 +40,16 @@ module.exports = async (id, $comic) => {
                         storyline,
                     },
                 })
-                chapterCrawl(comic.id, chapterList)
+
+                await chapterCrawl(comic.id, chapterList)
+
+                resolve()
             } else {
-                chapterCrawl(comicDuplicated.id, chapterList)
+                await chapterCrawl(comicDuplicated.id, chapterList)
+                resolve()
             }
         } catch (err) {
-            throw err.message
+            reject(err)
         }
-    }, 1000)
+    })
 }

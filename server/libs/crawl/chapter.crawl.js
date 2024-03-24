@@ -3,11 +3,13 @@ const imageCrawl = require('./image.crawl')
 
 const prisma = new Prisma.PrismaClient()
 
-module.exports = async (comic_id, chapterList) => {
-    for (let i = chapterList.length - 1; i >= 0; i--) {
-        const chap_order = chapterList.length - i
-        setTimeout(async () => {
-            try {
+module.exports = (comic_id, chapterList) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            var imageCrawlPromises = []
+
+            for (let i = chapterList.length - 1; i >= 0; i--) {
+                const chap_order = chapterList.length - i
                 const duplicated = await prisma.chapters.findFirst({
                     where: {
                         comic_id,
@@ -26,25 +28,33 @@ module.exports = async (comic_id, chapterList) => {
                             chap_num,
                         },
                     })
-                    imageCrawl(
-                        chapter.id,
-                        chapterList
-                            .eq(chap_order - 1)
-                            .find('a')
-                            .attr('href')
+                    imageCrawlPromises.push(
+                        imageCrawl(
+                            chapter.id,
+                            chapterList
+                                .eq(chap_order - 1)
+                                .find('a')
+                                .attr('href')
+                        )
                     )
                 } else {
-                    imageCrawl(
-                        duplicated.id,
-                        chapterList
-                            .eq(chap_order - 1)
-                            .find('a')
-                            .attr('href')
+                    imageCrawlPromises.push(
+                        imageCrawl(
+                            duplicated.id,
+                            chapterList
+                                .eq(chap_order - 1)
+                                .find('a')
+                                .attr('href')
+                        )
                     )
                 }
-            } catch (err) {
-                throw err.message
             }
-        }, 1000)
-    }
+
+            await Promise.all(imageCrawlPromises)
+
+            resolve()
+        } catch (err) {
+            reject(err)
+        }
+    })
 }
