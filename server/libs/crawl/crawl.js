@@ -1,5 +1,4 @@
 const getHtmlFromUrl = require('../getHtmlFromUrl')
-const wait = require('../wait.js')
 const comicInfoCrawl = require('./comic.crawl.js')
 
 module.exports = async () => {
