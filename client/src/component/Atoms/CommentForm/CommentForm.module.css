@@ -1,0 +1,25 @@
+.commentForm {
+    width: 100%;
+    padding-inline: 10px;
+}
+.commentForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    outline: none;
+    background-color: var(--reverse-theme-color-15);
+    resize: none;
+    font-family: inherit;
+}
+.commentForm textarea::placeholder {
+    color: var(--reverse-theme-color-50);
+}
+.commentForm button {
+    display: block;
+    padding: 5px;
+    margin: 10px 0 0 auto;
+    border-radius: var(--border-radius);
+    background-color: var(--main-color);
+    color: var(--theme-color);
+}
