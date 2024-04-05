@@ -1,21 +1,27 @@
 //lib
 const express = require('express')
-const path = require('path')
 const cors = require('cors')
-require('dotenv').config
 
 const router = require('./routes/index.js')
 const crawl = require('./libs/crawl/crawl.js')
+const authenticateToken = require('./middleware/authenticateToken.js')
 
 //app set up
+require('dotenv').config
 const app = express()
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 app.use(
     cors({
-        origin: ['https://comic-web-seven.vercel.app'],
-        methods: ['POST', 'GET'],
+        origin: ['https://3001-kieulong1401-comicweb-cpnt4n1m97b.ws-us110.gitpod.io'],
+        methods: ['POST', 'GET', 'OPTIONS'],
         credentials: true,
+        allowedHeaders: ['Content-Type', 'Authorization']
     })
 )
+
+app.use(authenticateToken)
+
 router(app)
 
 app.listen(3001, (err) => {

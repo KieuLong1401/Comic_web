@@ -8,23 +8,23 @@ BigInt.prototype.toJSON = () => {
 }
 
 module.exports = {
-    async getComicDetail(req, res) {
+    async getDetail(req, res) {
         const id = req.params.id
 
-        await prisma.comics
-            .findUnique({
+        try {
+            const comic = await prisma.comics.findUnique({
                 where: {
                     id,
                 },
             })
-            .then((comic) => {
-                res.json(comic)
-            })
-            .catch((err) => {
-                console.error(err)
-            })
+            res.json(comic)
+
+        } catch(err) {
+            console.error(err)
+        }
+
     },
-    async getComics(req, res) {
+    async getList(req, res) {
         const page = parseInt(req.query.page)
         const categories = JSON.parse(req.query.categories)
         const sort_by = req.query.sort_by
@@ -115,47 +115,6 @@ module.exports = {
             console.error(err)
         }
     },
-    async getChapter(req, res) {
-        const comic_id = req.params.comicId
-        const limit = Number(req.query.limit)
-
-        try {
-            if (!limit) {
-                const result = await prisma.chapters.findMany({
-                    select: {
-                        id: true,
-                        chap_order: true,
-                        chap_num: true,
-                        uploaded_time: true,
-                    },
-                    where: {
-                        comic_id: comic_id,
-                    },
-                    orderBy: {
-                        chap_order: 'desc',
-                    },
-                })
-                res.json(result)
-            } else {
-                const result = await prisma.chapters.findMany({
-                    select: {
-                        id: true,
-                        chap_order: true,
-                        chap_num: true,
-                        uploaded_time: true,
-                    },
-                    where: {
-                        comic_id: comic_id,
-                    },
-                    orderBy: {
-                        chap_order: 'desc',
-                    },
-                    take: limit,
-                })
-                res.json(result)
-            }
-        } catch (err) {
-            console.error(err)
-        }
-    },
+    
+    
 }

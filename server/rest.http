@@ -1,0 +1,14 @@
+POST http://localhost:3001/signup
+Content-Type: application/json
+
+{
+    "name": "long",
+    "user_id": "kieulong1401",
+    "password": "123"
+    
+}
+
+###
+
+GET http://localhost:3001/comic/quai-thu
+Content-Type: application/json
