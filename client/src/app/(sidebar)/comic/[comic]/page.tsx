@@ -1,5 +1,5 @@
 import styles from '@/app/(sidebar)/comic/[comic]/comic.module.css'
-import CommentForm from '@/component/Atoms/CommentForm/CommentForm'
+import CommentForm from '@/component/Molecules/CommentForm/CommentForm'
 import getChapter from '@/services/getChapter'
 import getComicDetail from '@/services/getComicDetail'
 import { faEye, faReply, faThumbsDown, faThumbsUp, faUser } from '@fortawesome/free-solid-svg-icons'
