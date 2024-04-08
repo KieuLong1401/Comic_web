@@ -10,5 +10,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3001/comic/quai-thu
+POST http://localhost:3001/login
 Content-Type: application/json
+
+{
+    "user_id": "kieulong1401",
+    "password": "123"
+    
+}

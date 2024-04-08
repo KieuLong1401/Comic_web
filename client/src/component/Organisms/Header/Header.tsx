@@ -1,11 +1,13 @@
 import styles from './Header.module.css'
 
-import SearchBar from '@/component/Molecules/SearchBar/SeachBar'
+import SearchBar from '@/component/Molecules/SearchBar/SearchBar'
 import ThemeSwitch from '@/component/Molecules/ThemeSwitch/ThemeSwitch'
 import Navbar from '@/component/Molecules/Navbar/Navbar'
 import Menu from '@/component/Molecules/Menu/Menu'
 
 import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 export default function Header() {
     return (
@@ -19,14 +21,20 @@ export default function Header() {
             <Navbar className={styles.navbar} />
             <SearchBar className={styles.searchBar} />
             <ThemeSwitch className={styles.themeSwitch} />
-            <div className={styles.buttonContainer}>
-                <button className={styles.loginBtn}>
-                    <Link href={'/login'}>Login</Link>
-                </button>
-                <button className={styles.registerBtn}>
-                    <Link href={'/register'}>Sign up</Link>
-                </button>
-            </div>
+            {localStorage.getItem('token') ? (
+                <div className={styles.user}>
+                    <FontAwesomeIcon icon={faUser} />
+                </div>
+            ) : (
+                <div className={styles.buttonContainer}>
+                    <button className={styles.loginBtn}>
+                        <Link href={'/login'}>Login</Link>
+                    </button>
+                    <button className={styles.registerBtn}>
+                        <Link href={'/register'}>Sign up</Link>
+                    </button>
+                </div>
+            )}
             <Menu className={styles.menu} />
         </header>
     )

@@ -10,13 +10,13 @@ const authenticateToken = require('./middleware/authenticateToken.js')
 require('dotenv').config
 const app = express()
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(
     cors({
-        origin: ['https://3001-kieulong1401-comicweb-cpnt4n1m97b.ws-us110.gitpod.io'],
+        origin: ['http://localhost:3000'],
         methods: ['POST', 'GET', 'OPTIONS'],
         credentials: true,
-        allowedHeaders: ['Content-Type', 'Authorization']
+        allowedHeaders: ['Content-Type', 'Authorization'],
     })
 )
 

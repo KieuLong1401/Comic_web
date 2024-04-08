@@ -1,11 +1,10 @@
 'use client'
 
-import signUp from '@/services/signUp'
+import login from '@/services/login'
 import { useState } from 'react'
 
 export default () => {
     const [formValues, setFormValues] = useState({
-        name: '',
         user_id: '',
         password: '',
     })
@@ -23,7 +22,8 @@ export default () => {
         e.preventDefault()
 
         try {
-            const res = await signUp(formValues)
+            const token = await login(formValues)
+            localStorage.setItem('token', token)
         } catch (err) {
             console.error(err)
         }
@@ -31,14 +31,6 @@ export default () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor='name'>name</label>
-            <input
-                type='text'
-                name='name'
-                value={formValues.name}
-                onChange={handleFormValueChange}
-            />
-
             <label htmlFor='user_id'>id</label>
             <input
                 type='text'

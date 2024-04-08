@@ -2,12 +2,13 @@ import axiosInstance from '@/utils/axiosInstance'
 
 export default async (data) => {
     try {
-        const result = await axiosInstance({
-            url: '/signup',
+        const res = await axiosInstance({
+            url: '/login',
             method: 'POST',
             data,
         })
-        return result.data
+
+        return res.data.token
     } catch (err) {
         console.error(err)
     }
