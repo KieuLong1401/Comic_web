@@ -6,7 +6,8 @@ import { useEffect, useRef, useState } from "react"
 import postComment from '@/services/postComment'
 
 
-export default () => {
+
+export default function CommentForm() {
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
     const [formValues, setFormValues] = useState({
         comment: ''
@@ -16,7 +17,7 @@ export default () => {
         if(!textAreaRef.current?.scrollHeight) return
         textAreaRef.current.style.height = '70px'
         textAreaRef.current.style.height = `${textAreaRef.current?.scrollHeight}px`
-    }, [textAreaRef.current, formValues.comment])
+    }, [textAreaRef, formValues.comment])
 
     function handleFormValueChange(e) {
         setFormValues({

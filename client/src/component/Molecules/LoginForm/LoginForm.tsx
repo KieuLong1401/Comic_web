@@ -3,7 +3,7 @@
 import login from '@/services/login'
 import { useState } from 'react'
 
-export default () => {
+export default function LoginForm() {
     const [formValues, setFormValues] = useState({
         user_id: '',
         password: '',

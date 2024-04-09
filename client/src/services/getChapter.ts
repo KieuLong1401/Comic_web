@@ -1,6 +1,6 @@
 import axiosInstance from "@/utils/axiosInstance";
 
-export default async(comicId: string, limit?: number) => {
+const getChapter = async(comicId: string, limit?: number) => {
     try {
         const result = await axiosInstance({
             url: `chapter/${comicId}`,
@@ -15,3 +15,5 @@ export default async(comicId: string, limit?: number) => {
         console.log(err)
     }
 }
+
+export default getChapter

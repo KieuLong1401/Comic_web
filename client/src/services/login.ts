@@ -1,6 +1,6 @@
 import axiosInstance from '@/utils/axiosInstance'
 
-export default async (data) => {
+const login = async (data) => {
     try {
         const res = await axiosInstance({
             url: '/login',
@@ -13,3 +13,5 @@ export default async (data) => {
         console.error(err)
     }
 }
+
+export default login

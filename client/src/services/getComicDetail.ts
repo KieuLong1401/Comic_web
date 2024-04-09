@@ -1,6 +1,6 @@
 import axiosInstance from "@/utils/axiosInstance";
 
-export default async(comicId: string) => {
+const getComicDetail = async(comicId: string) => {
     try {
         const result = await axiosInstance({
             url: `comic/${comicId}`,
@@ -12,3 +12,5 @@ export default async(comicId: string) => {
         console.log(err)
     }
 }
+
+export default getComicDetail

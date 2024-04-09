@@ -4,7 +4,7 @@ interface PostCommentProps {
     comment: string
 }
 
-export default async(data: PostCommentProps) => {
+const postComment = async(data: PostCommentProps) => {
     // try{
     //     const res = await axiosInstance({
     //         url: 'addComment',
@@ -17,3 +17,5 @@ export default async(data: PostCommentProps) => {
     //     console.error(err)
     // }
 }
+
+export default postComment

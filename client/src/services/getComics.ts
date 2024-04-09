@@ -1,6 +1,6 @@
 import instance from '@/utils/axiosInstance'
 
-export default async ({
+const getComics = async ({
     categories = [],
     sort_by = 'uploaded_time',
     sort_type = 'desc',
@@ -30,3 +30,5 @@ export default async ({
         console.error(err)
     }
 }
+
+export default getComics
