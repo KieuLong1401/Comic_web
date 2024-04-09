@@ -3,7 +3,7 @@
 import signUp from '@/services/signUp'
 import { useState } from 'react'
 
-export default function SignUpForm() {
+export default () => {
     const [formValues, setFormValues] = useState({
         name: '',
         user_id: '',

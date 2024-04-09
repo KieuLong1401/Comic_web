@@ -21,11 +21,7 @@ export default function Header() {
             <Navbar className={styles.navbar} />
             <SearchBar className={styles.searchBar} />
             <ThemeSwitch className={styles.themeSwitch} />
-            {localStorage.getItem('token') ? (
-                <div className={styles.user}>
-                    <FontAwesomeIcon icon={faUser} />
-                </div>
-            ) : (
+            
                 <div className={styles.buttonContainer}>
                     <button className={styles.loginBtn}>
                         <Link href={'/login'}>Login</Link>
@@ -34,7 +30,6 @@ export default function Header() {
                         <Link href={'/register'}>Sign up</Link>
                     </button>
                 </div>
-            )}
             <Menu className={styles.menu} />
         </header>
     )
