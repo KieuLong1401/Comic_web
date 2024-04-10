@@ -1,4 +1,5 @@
 'use client'
+import styles from './SignUpForm.module.css'
 
 import signUp from '@/services/signUp'
 import { useState } from 'react'
@@ -6,11 +7,11 @@ import { useState } from 'react'
 export default () => {
     const [formValues, setFormValues] = useState({
         name: '',
-        user_id: '',
+        email: '',
         password: '',
     })
-
-    const [succeeded, setSucceeded] = useState(null)
+    const [error, setError] = useState('')
+    const [succeeded, setSucceeded] = useState(false)
 
     function handleFormValueChange(e) {
         setFormValues({
@@ -23,14 +24,22 @@ export default () => {
         e.preventDefault()
 
         try {
-            const res = await signUp(formValues)
-        } catch (err) {
-            console.error(err)
+            await signUp(formValues)
+            setSucceeded(true)
+        } catch (err: any) {
+            setError(err?.response.data)
         }
     }
 
-    return (
+    return succeeded ? (
+        <div>
+            <h1>created user</h1>
+            <a href='/login'>login</a>
+        </div>
+    ) : (
         <form onSubmit={handleSubmit}>
+            {error != '' && <h1 className={styles.errMes}>{error}</h1>}
+
             <label htmlFor='name'>name</label>
             <input
                 type='text'
@@ -39,11 +48,11 @@ export default () => {
                 onChange={handleFormValueChange}
             />
 
-            <label htmlFor='user_id'>id</label>
+            <label htmlFor='email'>id</label>
             <input
                 type='text'
-                name='user_id'
-                value={formValues.user_id}
+                name='email'
+                value={formValues.email}
                 onChange={handleFormValueChange}
             />
 

@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "name": "long",
-    "user_id": "kieulong1401",
+    "email": "kieulong1401",
     "password": "123"
     
 }
@@ -14,7 +14,7 @@ POST http://localhost:3001/login
 Content-Type: application/json
 
 {
-    "user_id": "kieulong1401",
+    "email": "kieulong1401",
     "password": "123"
     
 }

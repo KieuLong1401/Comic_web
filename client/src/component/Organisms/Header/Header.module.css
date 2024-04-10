@@ -31,35 +31,6 @@
     justify-self: flex-end;
 }
 
-.buttonContainer {
-    margin-right: 0;
-    display: flex;
-    justify-self: flex-end;
-    gap: 5px;
-}
-
-.buttonContainer>button {
-    width: 80px;
-    height: 30px;
-    border-radius: var(--border-radius);
-}
-
-.loginBtn {
-    background-color: var(--main-color);
-    color: var(--theme-color);
-}
-
-.registerBtn {
-    background-color: var(--theme-color);
-    border: solid 1px var(--reverse-theme-color-50);
-    color: var(--reverse-theme-color-75);
-}
-
-.loginBtn:hover,
-.registerBtn:hover {
-    filter: brightness(75%);
-}
-
 .menu {
     padding-right: 10px;
     display: none;

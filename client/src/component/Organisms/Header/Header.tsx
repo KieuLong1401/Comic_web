@@ -6,8 +6,7 @@ import Navbar from '@/component/Molecules/Navbar/Navbar'
 import Menu from '@/component/Molecules/Menu/Menu'
 
 import Link from 'next/link'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import SignAction from '@/component/Molecules/Tooltip/SignAction/SignAction'
 
 export default function Header() {
     return (
@@ -21,15 +20,8 @@ export default function Header() {
             <Navbar className={styles.navbar} />
             <SearchBar className={styles.searchBar} />
             <ThemeSwitch className={styles.themeSwitch} />
-            
-                <div className={styles.buttonContainer}>
-                    <button className={styles.loginBtn}>
-                        <Link href={'/login'}>Login</Link>
-                    </button>
-                    <button className={styles.registerBtn}>
-                        <Link href={'/register'}>Sign up</Link>
-                    </button>
-                </div>
+
+            <SignAction />
             <Menu className={styles.menu} />
         </header>
     )

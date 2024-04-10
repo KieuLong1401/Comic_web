@@ -1,7 +1,6 @@
 const Prisma = require('@prisma/client')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const verifalia = require('verifalia')
 
 const prisma = new Prisma.PrismaClient()
 
@@ -10,18 +9,14 @@ module.exports = {
         try {
             const { email, password, name } = req.body
             if (!email || !password || !name)
-                return res.json({
-                    succeed: false,
-                    message: 'missed signup param',
-                })
+                return res.status(400).send('missing params')
 
             const existed = await prisma.users.findFirst({
                 where: {
                     email,
                 },
             })
-            if (existed)
-                return res.json({ succeed: false, message: 'user existed' })
+            if (existed) return res.status(409).send('email have been used')
 
             const hashedPassword = await bcrypt.hash(password, 8)
             await prisma.users.create({
@@ -32,16 +27,14 @@ module.exports = {
                 },
             })
 
-            res.status(201).json({ succeed: true })
+            res.status(201).send('created user')
         } catch (err) {
             console.error(err.message)
-            res.status(401).json({ succeed: false })
+            res.status(401).send(err.message)
         }
     },
     async login(req, res) {
         const { email, password } = req.body
-
-        const emailIsValid = await verifalia.submitEmailValidation()
 
         const user = await prisma.users.findFirst({
             where: {
@@ -50,15 +43,17 @@ module.exports = {
         })
 
         if (!user || !(await bcrypt.compare(password, user.password))) {
-            return res.json({ succeed: false })
+            return res.status(401).send('wrong email or password')
         }
 
-        const token = jwt.sign(
-            { email: user.email },
-            process.env.SECRET_KEY,
-            { expiresIn: '1h' }
-        )
+        const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY, {
+            expiresIn: '1h',
+        })
 
-        res.json({ token, succeed: true })
+        res.status(200).json({
+            id: user.id,
+            name: user.name,
+            token,
+        })
     },
 }

@@ -1,15 +1,16 @@
 'use client'
 
 import login from '@/services/login'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default () => {
     const [formValues, setFormValues] = useState({
-        user_id: '',
+        email: '',
         password: '',
     })
-
-    const [succeeded, setSucceeded] = useState(null)
+    const [error, setError] = useState('')
+    const router = useRouter()
 
     function handleFormValueChange(e) {
         setFormValues({
@@ -22,19 +23,22 @@ export default () => {
         e.preventDefault()
 
         try {
-            const token = await login(formValues)
-        } catch (err) {
-            console.error(err)
+            const res = await login(formValues)
+            localStorage.setItem('user', JSON.stringify(res?.data))
+            router.replace('/')
+        } catch (err: any) {
+            setError(err.response.data)
         }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor='user_id'>id</label>
+            {error != '' && <h1>{error}</h1>}
+            <label htmlFor='email'>id</label>
             <input
                 type='text'
-                name='user_id'
-                value={formValues.user_id}
+                name='email'
+                value={formValues.email}
                 onChange={handleFormValueChange}
             />
 
