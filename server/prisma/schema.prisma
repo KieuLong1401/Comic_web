@@ -50,7 +50,7 @@ model Images {
 model Users {
   id              Int             @id @default(autoincrement())
   name            String
-  user_id         String
+  email         String
   password        String
   comments        Comments[]
   liked_comments  CommentsJudge[]

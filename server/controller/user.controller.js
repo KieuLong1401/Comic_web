@@ -1,14 +1,15 @@
 const Prisma = require('@prisma/client')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const verifalia = require('verifalia')
 
 const prisma = new Prisma.PrismaClient()
 
 module.exports = {
     async signup(req, res) {
         try {
-            const { user_id, password, name } = req.body
-            if (!user_id || !password || !name)
+            const { email, password, name } = req.body
+            if (!email || !password || !name)
                 return res.json({
                     succeed: false,
                     message: 'missed signup param',
@@ -16,7 +17,7 @@ module.exports = {
 
             const existed = await prisma.users.findFirst({
                 where: {
-                    user_id,
+                    email,
                 },
             })
             if (existed)
@@ -25,7 +26,7 @@ module.exports = {
             const hashedPassword = await bcrypt.hash(password, 8)
             await prisma.users.create({
                 data: {
-                    user_id,
+                    email,
                     password: hashedPassword,
                     name,
                 },
@@ -38,11 +39,13 @@ module.exports = {
         }
     },
     async login(req, res) {
-        const { user_id, password } = req.body
+        const { email, password } = req.body
+
+        const emailIsValid = await verifalia.submitEmailValidation()
 
         const user = await prisma.users.findFirst({
             where: {
-                user_id,
+                email,
             },
         })
 
@@ -51,7 +54,7 @@ module.exports = {
         }
 
         const token = jwt.sign(
-            { user_id: user.user_id },
+            { email: user.email },
             process.env.SECRET_KEY,
             { expiresIn: '1h' }
         )

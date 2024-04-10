@@ -23,7 +23,6 @@ export default () => {
 
         try {
             const token = await login(formValues)
-            localStorage.setItem('token', token)
         } catch (err) {
             console.error(err)
         }
