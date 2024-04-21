@@ -9,17 +9,22 @@ module.exports = async () => {
     setInterval(async () => {}, 1000 * 60 * 60)
 
     list.map(async (comic) => {
+        try {
         const comic_id = comic
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
             .split(' ')
             .join('-')
-        let $comic = await getHtmlFromUrl(
-            (process.env.CRAWL_URL || 'https://www.nettruyenus.net/') +
-                'truyen-tranh/' +
-                comic_id
-        )
-        comicInfoCrawlPromises.push(comicInfoCrawl(comic_id, $comic))
+
+            let $comic = await getHtmlFromUrl(
+                (process.env.CRAWL_URL || 'https://www.nettruyenss.vn/') +
+                    'truyen-tranh/' +
+                    comic_id
+            )
+            comicInfoCrawlPromises.push(comicInfoCrawl(comic_id, $comic))
+        } catch(err) {
+            console.error(err)
+        }
     })
 
     await Promise.all(comicInfoCrawlPromises)

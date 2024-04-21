@@ -26,6 +26,6 @@ router(app)
 
 app.listen(3001, (err) => {
     if (err) console.log(err)
-    // crawl().catch((err) => console.log(err))
+    crawl().catch((err) => console.log(err))
     console.log('listening on post', 3001)
 })

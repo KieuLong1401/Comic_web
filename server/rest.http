@@ -18,3 +18,13 @@ Content-Type: application/json
     "password": "123"
     
 }
+
+###
+
+GET https://nettruyenxx.com/truyen-tranh/hoi-quy-bang-vuong-quyen/chuong-1
+
+###
+GET https://nettruyenxx.com/truyen-tranh/hoi-quy-bang-vuong-quyen
+
+###
+GET https://cdn.nettruyenss.vn/874/874886/1.jpg?w=2048&q=75&auto=format

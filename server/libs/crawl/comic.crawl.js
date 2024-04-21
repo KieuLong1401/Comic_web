@@ -6,7 +6,7 @@ const prisma = new Prisma.PrismaClient()
 module.exports = (id, $comic) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const chapterList = $comic('.chapter', '.list-chapter')
+            const chapterList = $comic('li > div > a').length
 
             const comicDuplicated = await prisma.comics.findUnique({
                 where: {
@@ -45,7 +45,8 @@ module.exports = (id, $comic) => {
 
                 resolve()
             } else {
-                await chapterCrawl(comicDuplicated.id, chapterList)
+                //await chapterCrawl(comicDuplicated.id, chapterList)
+                console.log(chapterList)
                 resolve()
             }
         } catch (err) {
