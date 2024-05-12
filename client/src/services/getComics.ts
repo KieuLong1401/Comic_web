@@ -14,7 +14,7 @@ const getComics = async ({
     page: number
 }) => {
     try {
-        const result = await instance({
+        const res = await instance({
             url: 'comicList',
             method: 'GET',
             params: {
@@ -25,7 +25,7 @@ const getComics = async ({
                 page,
             },
         })
-        return result
+        return res.data
     } catch (err) {
         console.error(err)
     }

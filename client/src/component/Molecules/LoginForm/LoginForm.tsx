@@ -24,7 +24,7 @@ export default () => {
 
         try {
             const res = await login(formValues)
-            localStorage.setItem('user', JSON.stringify(res?.data))
+            localStorage.setItem('user', JSON.stringify(res))
             router.replace('/')
         } catch (err: any) {
             setError(err.response.data)

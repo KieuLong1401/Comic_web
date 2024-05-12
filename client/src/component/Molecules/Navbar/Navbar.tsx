@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import SignAction from '../Tooltip/SignAction/SignAction'
 
 const categories = [
     { name: 'Action', description: 'this is description', href: 'action' },
@@ -229,12 +230,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, menuDrop = false }) => {
                     <div className={styles.description}>{description}</div>
                 )}
             </Tooltip>
-            {menuDrop && (
-                <div className={styles.accountLinkContainer}>
-                    <Link href={'/login'}>Đăng Nhập</Link>
-                    <Link href={'/register'}>Đăng Ký</Link>
-                </div>
-            )}
+            {menuDrop && <SignAction />}
         </nav>
     )
 }

@@ -21,7 +21,7 @@ export default function Header() {
             <SearchBar className={styles.searchBar} />
             <ThemeSwitch className={styles.themeSwitch} />
 
-            <SignAction />
+            <SignAction className={styles.signAction} />
             <Menu className={styles.menu} />
         </header>
     )

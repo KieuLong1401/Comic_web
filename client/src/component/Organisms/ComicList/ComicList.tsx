@@ -9,11 +9,9 @@ interface ComicListProps {
 }
 
 const ComicList = async ({ page }: ComicListProps) => {
-    const comicsData = (
-        await getComics({
-            page,
-        })
-    )?.data
+    const comicsData = await getComics({
+        page,
+    })
 
     return (
         <div className={styles.container}>

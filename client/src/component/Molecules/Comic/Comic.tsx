@@ -25,12 +25,13 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                 href={comicHref}
                 className={styles.image}
             >
-                <img
+                <Image
                     src={data.comic_image_src}
                     alt=''
+                    fill
                     style={{
-                        width: '100%',
                         height: '100%',
+                        objectFit: 'contain',
                     }}
                 />
                 <div className={styles.info}>
@@ -76,7 +77,9 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                             className={styles.chapterContainer}
                             key={i}
                         >
-                            <Link href={'/'}>chapter {e.chap_num}</Link>
+                            <Link href={`${comicHref}/${e.chap_num}`}>
+                                chapter {e.chap_num}
+                            </Link>
                             <span className={styles.postedTime}>{`${
                                 diffYears > 0
                                     ? diffYears

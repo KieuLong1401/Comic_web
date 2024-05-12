@@ -7,7 +7,7 @@ const login = async (data) => {
         data,
     })
 
-    return res
+    return res.data
 }
 
 export default login
