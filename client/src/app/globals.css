@@ -1,6 +1,6 @@
 :root {
     --max-width: 1200px;
-    --header-height: 55px;
+    --header-height: 40px;
     --footer-height: 50px;
     --border-radius: 5px;
     --main-color: rgba(70, 130, 180, 1);

@@ -41,15 +41,13 @@
         margin-left: 10px;
     }
 
-    .navbar {
-        display: none;
-    }
-
-    .buttonContainer {
+    .navbar, .buttonContainer, .signAction {
         display: none;
     }
 
     .menu {
         display: block;
     }
+}
+@media screen and (max-width: 480px) {
 }
