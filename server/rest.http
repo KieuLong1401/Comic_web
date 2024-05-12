@@ -21,7 +21,12 @@ Content-Type: application/json
 
 ###
 
-GET https://nettruyenxx.com/truyen-tranh/hoi-quy-bang-vuong-quyen/chuong-1
+GET http://localhost:3001/chapterId?comicId=hoang-tu-ban-thuoc-s19444-19444&chapOrder=18
+
+
+###
+
+GET https://nettruyenfull.com/
 
 ###
 GET https://nettruyenxx.com/truyen-tranh/hoi-quy-bang-vuong-quyen

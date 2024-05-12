@@ -6,26 +6,27 @@ module.exports = async () => {
 
     var comicInfoCrawlPromises = []
 
-    setInterval(async () => {}, 1000 * 60 * 60)
+    setInterval(async () => {
+        list.map(async (comic) => {
+            try {
+                const comic_id = comic
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .split(' ')
+                    .join('-')
 
-    list.map(async (comic) => {
-        try {
-        const comic_id = comic
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .split(' ')
-            .join('-')
-
-            let $comic = await getHtmlFromUrl(
-                (process.env.CRAWL_URL || 'https://www.nettruyenss.vn/') +
-                    'truyen-tranh/' +
-                    comic_id
-            )
-            comicInfoCrawlPromises.push(comicInfoCrawl(comic_id, $comic))
-        } catch(err) {
-            console.error(err)
-        }
-    })
+                let $comic = await getHtmlFromUrl(
+                    (process.env.CRAWL_URL ||
+                        'https://www.nettruyenfull.com/') +
+                        'truyen-tranh/' +
+                        comic_id
+                )
+                comicInfoCrawlPromises.push(comicInfoCrawl(comic_id, $comic))
+            } catch (err) {
+                console.error(err)
+            }
+        })
+    }, 1000 * 60 * 60)
 
     await Promise.all(comicInfoCrawlPromises)
 }

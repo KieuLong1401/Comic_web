@@ -7,10 +7,10 @@ module.exports = (chapter_id, chapUrl) => {
     return new Promise(async (resolve, reject) => {
         try {
             const $chapter = await getHtmlFromUrl(chapUrl)
-            const imageList = $chapter('img', '.page-chapter')
-
-            imageList.each(async (image_order, image) => {
-                const image_src = image.attribs.src
+            const imageList = $chapter('.page-chapter>img')
+            for (let i = 0; i < imageList.length; i++) {
+                const image_order = i
+                const image_src = imageList[i].attribs['data-original']
 
                 const duplicated = await prisma.images.findFirst({
                     where: {
@@ -30,7 +30,7 @@ module.exports = (chapter_id, chapUrl) => {
                 }
 
                 resolve()
-            })
+            }
         } catch (err) {
             reject(err)
         }

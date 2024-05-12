@@ -6,8 +6,7 @@ const prisma = new Prisma.PrismaClient()
 module.exports = (id, $comic) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const chapterList = $comic('li > div > a').length
-
+            const chapterList = $comic('nav .chapter>a')
             const comicDuplicated = await prisma.comics.findUnique({
                 where: {
                     id,
@@ -15,25 +14,21 @@ module.exports = (id, $comic) => {
             })
 
             if (!comicDuplicated) {
-                let title = $comic('.title-detail', '#item-detail')
-                    .contents()
-                    .first()
-                    .text()
-                let comic_image_src = $comic('.col-image>img').attr('src')
-                let author = $comic('p', '.author').eq(1).text()
-                let storyline = $comic('.detail-content>.about').eq(0).text()
-                let other_title =
-                    $comic('.othername>.other-name').text() || null
+                let title = $comic('h1').text()
+                let comic_image_src = `${$comic('div>img').attr('src')}`
+                let author = $comic('li>p').eq(1).text()
+                let storyline = $comic('article>div>p').text()
                 let categories = []
-                $comic('a', '.kind').map((i, e) =>
+                $comic('li>p>a').map((i, e) => {
+                    if ($comic(e).text() == '') return
                     categories.push($comic(e).text().toLowerCase())
-                )
+                })
 
                 const comic = await prisma.comics.create({
                     data: {
                         id,
                         title,
-                        other_title,
+                        other_title: null,
                         comic_image_src,
                         author,
                         categories,
@@ -45,8 +40,7 @@ module.exports = (id, $comic) => {
 
                 resolve()
             } else {
-                //await chapterCrawl(comicDuplicated.id, chapterList)
-                console.log(chapterList)
+                await chapterCrawl(comicDuplicated.id, chapterList)
                 resolve()
             }
         } catch (err) {
