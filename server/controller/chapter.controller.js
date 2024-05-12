@@ -46,4 +46,24 @@ module.exports = {
             console.error(err)
         }
     },
+    async getId(req, res) {
+        try {
+            const comic_id = req.query.comicId
+            const chap_order = parseInt(req.query.chapOrder)
+
+            const result = await prisma.chapters.findFirst({
+                select: {
+                    id: true,
+                },
+                where: {
+                    comic_id,
+                    chap_order,
+                },
+            })
+
+            res.json(result.id)
+        } catch (e) {
+            console.error(e)
+        }
+    },
 }
