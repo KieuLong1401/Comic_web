@@ -74,7 +74,7 @@
 }
 
 .storyLine {
-    height: 150px;
+    max-height: 150px;
     padding-inline: 10px;
     overflow-y: auto;
 }

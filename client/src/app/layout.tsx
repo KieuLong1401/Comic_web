@@ -2,8 +2,6 @@
 
 import './globals.css'
 
-import Header from '@/component/Organisms/Header/Header'
-import Footer from '@/component/Organisms/Footer/Footer'
 import Theme from '@/component/Atoms/Theme/Theme'
 
 import type { Metadata } from 'next'
@@ -36,13 +34,7 @@ export default function RootLayout({
             className={roboto.className}
         >
             <body>
-                <Theme>
-                    <Header />
-                    <div className={'scrollContainer'}>
-                        <div className='pageContainer'>{children}</div>
-                        <Footer />
-                    </div>
-                </Theme>
+                <Theme>{children}</Theme>
             </body>
         </html>
     )

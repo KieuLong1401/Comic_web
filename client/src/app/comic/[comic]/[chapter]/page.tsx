@@ -1,9 +1,10 @@
-'use client'
 import styles from './chapter.module.css'
 
 import getChapterId from '@/services/getChapterId'
 import getImage from '@/services/getImage'
-import Image from 'next/image'
+import ImageList from '@/component/Molecules/ImageList/ImageList'
+import { Suspense } from 'react'
+import ReadingPageHeader from '@/component/Organisms/ReadingPageHeader/ReadingPageHeader'
 
 const Chapter = async ({
     params,
@@ -15,27 +16,13 @@ const Chapter = async ({
 
     return (
         <div className={styles.container}>
-            {imageList.map((e, i) => {
-                return (
-                    <Image
-                        src={e.image_src}
-                        alt=''
-                        width={995}
-                        height={2239}
-                        style={{
-                            display: 'block',
-                            position: 'unset',
-                            width: '600px',
-                            maxWidth: '100%',
-                            height: 'auto',
-                        }}
-                        onError={(e) => {
-                            e.currentTarget.style.display = 'none'
-                        }}
-                        key={i}
-                    />
-                )
-            })}
+            <ReadingPageHeader
+                comic={params.comic}
+                chapter={params.chapter}
+            />
+            <Suspense fallback={<h1>loading...</h1>}>
+                <ImageList imageList={imageList} />
+            </Suspense>
         </div>
     )
 }
