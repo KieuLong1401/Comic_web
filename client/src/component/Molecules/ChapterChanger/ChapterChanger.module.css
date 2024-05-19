@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.chapterMenu {
+    padding: 5px;
+}

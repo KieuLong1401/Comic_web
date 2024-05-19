@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    position: sticky;
+    top: 0;
+}
+.chapterChanger {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
