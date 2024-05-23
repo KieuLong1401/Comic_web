@@ -5,10 +5,42 @@ import { faCircleArrowLeft, faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import ChapterChanger from '../../Molecules/ChapterChanger/ChapterChanger'
+import { useEffect, useState } from 'react'
 
-export default ({ comic, chapter }: { comic: string; chapter: number }) => {
+export default ({
+    comic,
+    chapter,
+    className,
+}: {
+    comic: string
+    chapter: number
+    className?: string
+}) => {
+    const [isScrollingDown, setIsScrollingDown] = useState<boolean>(false)
+    var lastScrollPos = 0
+
+    useEffect(() => {
+        function scrollHandler() {
+            const scrolled = window.scrollY
+            console.log(lastScrollPos, scrolled)
+
+            if (lastScrollPos < scrolled) {
+                setIsScrollingDown(true)
+            } else {
+                setIsScrollingDown(false)
+            }
+            lastScrollPos = scrolled
+        }
+
+        window.addEventListener('scroll', scrollHandler)
+        return () => window.removeEventListener('scroll', scrollHandler)
+    }, [])
+
     return (
-        <div className={styles.container}>
+        <div
+            className={`${styles.container} ${className}`}
+            style={{ visibility: isScrollingDown ? 'hidden' : 'visible' }}
+        >
             <Link href='/'>
                 <FontAwesomeIcon icon={faHome} />
             </Link>

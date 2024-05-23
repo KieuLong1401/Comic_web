@@ -17,6 +17,7 @@ const Chapter = async ({
     return (
         <div className={styles.container}>
             <ReadingPageHeader
+                className={styles.header}
                 comic={params.comic}
                 chapter={params.chapter}
             />
