@@ -33,6 +33,11 @@ export default function RootLayout({
             lang='vi'
             className={roboto.className}
         >
+            <script
+                async
+                src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7837957122318987'
+                crossOrigin='anonymous'
+            ></script>
             <body>
                 <Theme>{children}</Theme>
             </body>
