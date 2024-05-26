@@ -33,6 +33,10 @@ export default function RootLayout({
             lang='vi'
             className={roboto.className}
         >
+            <meta
+                name='google-adsense-account'
+                content='ca-pub-7837957122318987'
+            ></meta>
             <script
                 async
                 src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7837957122318987'
