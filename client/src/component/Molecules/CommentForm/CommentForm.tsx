@@ -2,18 +2,17 @@
 
 import styles from './CommentForm.module.css'
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from 'react'
 import postComment from '@/services/postComment'
-
 
 export default () => {
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
     const [formValues, setFormValues] = useState({
-        comment: ''
+        comment: '',
     })
 
     useEffect(() => {
-        if(!textAreaRef.current?.scrollHeight) return
+        if (!textAreaRef.current?.scrollHeight) return
         textAreaRef.current.style.height = '70px'
         textAreaRef.current.style.height = `${textAreaRef.current?.scrollHeight}px`
     }, [textAreaRef.current, formValues.comment])
@@ -21,7 +20,7 @@ export default () => {
     function handleFormValueChange(e) {
         setFormValues({
             ...formValues,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
     }
     async function handleSubmit(e) {
@@ -29,13 +28,24 @@ export default () => {
 
         try {
             const res = await postComment(formValues)
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
     }
 
-    return <form className={styles.commentForm} onSubmit={handleSubmit}>
-        <textarea ref={textAreaRef} value={formValues.comment} onChange={handleFormValueChange} placeholder='Write Comment here' name='comment'></textarea>
-        <button type='submit'>Send</button>
-    </form>
+    return (
+        <form
+            className={styles.commentForm}
+            onSubmit={handleSubmit}
+        >
+            <textarea
+                ref={textAreaRef}
+                value={formValues.comment}
+                onChange={handleFormValueChange}
+                placeholder='Write Comment here'
+                name='comment'
+            ></textarea>
+            <button type='submit'>Send</button>
+        </form>
+    )
 }

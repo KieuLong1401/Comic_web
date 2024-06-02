@@ -5,7 +5,7 @@ import { faCircleArrowLeft, faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import ChapterChanger from '../../Molecules/ChapterChanger/ChapterChanger'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export default ({
     comic,
@@ -19,22 +19,21 @@ export default ({
     const [isScrollingDown, setIsScrollingDown] = useState<boolean>(false)
     var lastScrollPos = 0
 
-    useEffect(() => {
-        function scrollHandler() {
-            const scrolled = window.scrollY
-            console.log(lastScrollPos, scrolled)
+    const scrollHandler = useCallback(() => {
+        const scrolled = window.scrollY
 
-            if (lastScrollPos < scrolled) {
-                setIsScrollingDown(true)
-            } else {
-                setIsScrollingDown(false)
-            }
-            lastScrollPos = scrolled
+        if (lastScrollPos < scrolled) {
+            setIsScrollingDown(true)
+        } else {
+            setIsScrollingDown(false)
         }
+        lastScrollPos = scrolled
+    }, [])
 
+    useEffect(() => {
         window.addEventListener('scroll', scrollHandler)
         return () => window.removeEventListener('scroll', scrollHandler)
-    }, [])
+    }, [scrollHandler])
 
     return (
         <div

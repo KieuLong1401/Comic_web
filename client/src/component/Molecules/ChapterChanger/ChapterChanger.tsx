@@ -7,7 +7,6 @@ import Tooltip from '../Tooltip/Tooltip'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import getChapter from '@/services/getChapter'
 import { useEffect, useState } from 'react'
-import { rejects } from 'assert'
 
 interface comicProps {
     comic: string

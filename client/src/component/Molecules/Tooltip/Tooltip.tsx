@@ -2,7 +2,13 @@
 import { usePathname } from 'next/navigation'
 import styles from './Tooltip.module.css'
 
-import React, { ReactNode, useState, useEffect, useRef } from 'react'
+import React, {
+    ReactNode,
+    useState,
+    useEffect,
+    useRef,
+    useCallback,
+} from 'react'
 
 interface TooltipProps {
     children: ReactNode
@@ -26,35 +32,28 @@ const Tooltip: React.FC<TooltipProps> = ({
     const showTimeout = useRef<number | undefined>(undefined)
     const hideTimeout = useRef<number | undefined>(undefined)
 
-    useEffect(() => {
-        setIsShow(false)
-    }, [path])
-
-    useEffect(() => {
-        const triggerElement = document.getElementById(triggerElementId)
-        const tooltipElement = document.getElementsByClassName(
-            styles.container
-        )[0] as HTMLElement
-
-        function setIsShowWithDelay(show: boolean) {
-            if (show) {
-                showTimeout.current = window.setTimeout(() => {
-                    setIsShow(true)
-                }, delay[0])
-                if (hideTimeout.current !== undefined)
-                    window.clearTimeout(hideTimeout.current)
-            } else {
-                hideTimeout.current = window.setTimeout(() => {
-                    setIsShow(show)
-                }, delay[1])
-                if (showTimeout.current !== undefined)
-                    window.clearTimeout(showTimeout.current)
-            }
+    function setIsShowWithDelay(show: boolean) {
+        if (show) {
+            showTimeout.current = window.setTimeout(() => {
+                setIsShow(true)
+            }, delay[0])
+            if (hideTimeout.current !== undefined)
+                window.clearTimeout(hideTimeout.current)
+        } else {
+            hideTimeout.current = window.setTimeout(() => {
+                setIsShow(show)
+            }, delay[1])
+            if (showTimeout.current !== undefined)
+                window.clearTimeout(showTimeout.current)
         }
-        function handleClick() {
-            setIsShowWithDelay(!isShow)
-        }
-        function handleClickOutside(e) {
+    }
+
+    const handleClick = useCallback(() => {
+        setIsShowWithDelay(!isShow)
+    }, [setIsShowWithDelay])
+
+    const handleClickOutside = useCallback(
+        (e) => {
             if (!isShow) return
             const clickPosition = e.target as Element
 
@@ -64,13 +63,27 @@ const Tooltip: React.FC<TooltipProps> = ({
             )
                 return
             setIsShowWithDelay(false)
-        }
-        function handleMouseenter() {
-            setIsShowWithDelay(true)
-        }
-        function handleMouseLeave() {
-            setIsShowWithDelay(false)
-        }
+        },
+        [setIsShowWithDelay, isShow, triggerElementId]
+    )
+
+    const handleMouseenter = useCallback(() => {
+        setIsShowWithDelay(true)
+    }, [setIsShowWithDelay])
+
+    const handleMouseLeave = useCallback(() => {
+        setIsShowWithDelay(false)
+    }, [setIsShowWithDelay])
+
+    useEffect(() => {
+        setIsShow(false)
+    }, [path])
+
+    useEffect(() => {
+        const triggerElement = document.getElementById(triggerElementId)
+        const tooltipElement = document.getElementsByClassName(
+            styles.container
+        )[0] as HTMLElement
 
         if (trigger === 'click') {
             triggerElement?.addEventListener('click', handleClick)
@@ -91,7 +104,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             window.clearTimeout(showTimeout.current)
             window.clearTimeout(hideTimeout.current)
         }
-    }, [delay, isShow, trigger, triggerElementId])
+    }, [setIsShowWithDelay, trigger, triggerElementId])
 
     return (
         isShow && (
