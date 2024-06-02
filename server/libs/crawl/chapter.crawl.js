@@ -16,9 +16,7 @@ module.exports = (comic_id, chapterList) => {
                 })
 
                 if (!duplicated) {
-                    const chap_num = parseFloat(
-                        chapterList.eq(i).text().split(' ')[1]
-                    )
+                    const chap_num = chapterList.eq(i).text().split(' ')[1]
 
                     const chapter = await prisma.chapters.create({
                         data: {

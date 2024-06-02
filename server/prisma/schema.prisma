@@ -30,7 +30,7 @@ model Comics {
 model Chapters {
   id            Int        @id @default(autoincrement())
   chap_order    Int
-  chap_num      Float
+  chap_num      String
   uploaded_time DateTime   @default(now()) @db.Timestamptz(3)
   comic_id      String
   comic         Comics     @relation(fields: [comic_id], references: [id], onDelete: Cascade)
@@ -50,7 +50,7 @@ model Images {
 model Users {
   id              Int             @id @default(autoincrement())
   name            String
-  email         String
+  email           String
   password        String
   comments        Comments[]
   liked_comments  CommentsJudge[]
