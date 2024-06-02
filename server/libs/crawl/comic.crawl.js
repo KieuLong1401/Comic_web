@@ -6,7 +6,7 @@ const prisma = new Prisma.PrismaClient()
 module.exports = (id, $comic) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const chapterList = $comic('nav .chapter>a')
+            const chapterList = $comic('li.table-v2-row>div>a')
             const comicDuplicated = await prisma.comics.findUnique({
                 where: {
                     id,
@@ -15,9 +15,11 @@ module.exports = (id, $comic) => {
 
             if (!comicDuplicated) {
                 let title = $comic('h1').text()
-                let comic_image_src = `${$comic('div>img').attr('src')}`
-                let author = $comic('li>p').eq(1).text()
-                let storyline = $comic('article>div>p').text()
+                let comic_image_src = `${$comic('section>div>div>div>img').attr(
+                    'src'
+                )}`
+                let author = null
+                let storyline = $comic('section>div>div>div.relative').text()
                 let categories = []
                 $comic('li>p>a').map((i, e) => {
                     if ($comic(e).text() == '') return

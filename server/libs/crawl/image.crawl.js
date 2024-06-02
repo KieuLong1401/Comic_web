@@ -6,11 +6,13 @@ const prisma = new Prisma.PrismaClient()
 module.exports = (chapter_id, chapUrl) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const $chapter = await getHtmlFromUrl(chapUrl)
-            const imageList = $chapter('.page-chapter>img')
+            const $chapter = await getHtmlFromUrl(
+                `https://www.nettruyenca.com${chapUrl}`
+            )
+            const imageList = $chapter('div>img')
             for (let i = 0; i < imageList.length; i++) {
                 const image_order = i
-                const image_src = imageList[i].attribs['data-original']
+                const image_src = imageList[i].attribs['alt']
 
                 const duplicated = await prisma.images.findFirst({
                     where: {

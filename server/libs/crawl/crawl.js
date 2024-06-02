@@ -16,8 +16,7 @@ module.exports = async () => {
                     .join('-')
 
                 let $comic = await getHtmlFromUrl(
-                    (process.env.CRAWL_URL ||
-                        'https://www.nettruyenfull.com/') +
+                    (process.env.CRAWL_URL || 'https://www.nettruyenca.com/') +
                         'truyen-tranh/' +
                         comic_id
                 )
