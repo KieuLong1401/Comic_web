@@ -29,10 +29,7 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                     src={data.comic_image_src}
                     alt=''
                     fill
-                    style={{
-                        height: '100%',
-                        objectFit: 'contain',
-                    }}
+                    priority
                 />
                 <div className={styles.info}>
                     <div className={styles.viewInfo}>

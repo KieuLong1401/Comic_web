@@ -2,7 +2,7 @@
 
 import styles from './CommentForm.module.css'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import postComment from '@/services/postComment'
 
 export default () => {
@@ -27,7 +27,7 @@ export default () => {
         e.preventDefault()
 
         try {
-            const res = await postComment(formValues)
+            await postComment(formValues)
         } catch (err) {
             console.error(err)
         }

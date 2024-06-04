@@ -2,7 +2,7 @@
 import styles from './SignUpForm.module.css'
 
 import signUp from '@/services/signUp'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export default () => {
     const [formValues, setFormValues] = useState({
@@ -20,16 +20,19 @@ export default () => {
         })
     }
 
-    async function handleSubmit(e) {
-        e.preventDefault()
+    const handleSubmit = useCallback(
+        async (e) => {
+            e.preventDefault()
 
-        try {
-            await signUp(formValues)
-            setSucceeded(true)
-        } catch (err: any) {
-            setError(err?.response.data)
-        }
-    }
+            try {
+                await signUp(formValues)
+                setSucceeded(true)
+            } catch (err: any) {
+                setError(err?.response.data)
+            }
+        },
+        [formValues]
+    )
 
     return succeeded ? (
         <div>

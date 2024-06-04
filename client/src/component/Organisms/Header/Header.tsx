@@ -6,7 +6,7 @@ import Navbar from '@/component/Molecules/Navbar/Navbar'
 import Menu from '@/component/Molecules/Menu/Menu'
 
 import Link from 'next/link'
-import SignAction from '@/component/Molecules/Tooltip/SignAction/SignAction'
+import SignAction from '@/component/Molecules/SignAction/SignAction'
 
 export default function Header() {
     return (

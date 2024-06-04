@@ -9,8 +9,8 @@
 .comicsContainer {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 250px));
+    gap: 20px;
 }
 .pagination {
     width: 100%;

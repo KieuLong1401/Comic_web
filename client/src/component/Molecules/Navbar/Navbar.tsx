@@ -6,9 +6,9 @@ import Link from 'next/link'
 import Tooltip from '../Tooltip/Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import SignAction from '../Tooltip/SignAction/SignAction'
+import SignAction from '../SignAction/SignAction'
 
 const categories = [
     { name: 'Action', description: 'this is description', href: 'action' },
@@ -163,6 +163,16 @@ const Navbar: React.FC<NavbarProps> = ({ className, menuDrop = false }) => {
         ${className ? className : ''}
     `
 
+    const categoryMouseEnterHandler = useCallback((description) => {
+        return () => {
+            setDescription(description)
+        }
+    }, [])
+
+    const categoryMouseLeaveHandler = useCallback(() => {
+        setDescription('')
+    }, [])
+
     return (
         <nav className={classes}>
             <Link
@@ -212,8 +222,10 @@ const Navbar: React.FC<NavbarProps> = ({ className, menuDrop = false }) => {
                     {categories.map((e, i) => (
                         <Link
                             className={styles.categoryItem}
-                            onMouseEnter={() => setDescription(e.description)}
-                            onMouseLeave={() => setDescription('')}
+                            onMouseEnter={categoryMouseEnterHandler(
+                                e.description
+                            )}
+                            onMouseLeave={categoryMouseLeaveHandler}
                             href={`/category/${e.href}`}
                             key={i}
                             style={

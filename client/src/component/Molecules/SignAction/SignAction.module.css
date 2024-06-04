@@ -1,3 +1,6 @@
+.container {
+    min-width: 165px;
+}
 .buttonContainer {
     margin-right: 0;
     display: flex;
@@ -25,4 +28,8 @@
 .loginBtn:hover,
 .registerBtn:hover {
     filter: brightness(75%);
+}
+.userName {
+    font-size: 20px;
+    text-align: right;
 }

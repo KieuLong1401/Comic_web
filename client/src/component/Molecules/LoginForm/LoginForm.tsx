@@ -2,7 +2,7 @@
 
 import login from '@/services/login'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export default () => {
     const [formValues, setFormValues] = useState({
@@ -12,24 +12,30 @@ export default () => {
     const [error, setError] = useState('')
     const router = useRouter()
 
-    function handleFormValueChange(e) {
-        setFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value,
-        })
-    }
+    const handleFormValueChange = useCallback(
+        (e) => {
+            setFormValues({
+                ...formValues,
+                [e.target.name]: e.target.value,
+            })
+        },
+        [formValues]
+    )
 
-    async function handleSubmit(e) {
-        e.preventDefault()
+    const handleSubmit = useCallback(
+        async (e) => {
+            e.preventDefault()
 
-        try {
-            const res = await login(formValues)
-            localStorage.setItem('user', JSON.stringify(res))
-            router.replace('/')
-        } catch (err: any) {
-            setError(err.response.data)
-        }
-    }
+            try {
+                const res = await login(formValues)
+                localStorage.setItem('user', JSON.stringify(res))
+                router.replace('/')
+            } catch (err: any) {
+                setError(err.response.data)
+            }
+        },
+        [formValues, localStorage, router]
+    )
 
     return (
         <form onSubmit={handleSubmit}>

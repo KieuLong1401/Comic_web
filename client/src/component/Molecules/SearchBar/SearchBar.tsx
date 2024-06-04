@@ -2,7 +2,7 @@
 
 import styles from './SearchBar.module.css'
 
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useCallback } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import useDebounce from '@/hooks/useDebounce'
@@ -145,6 +145,10 @@ function SearchBar({ className }: { className: string }) {
         setIsLoading(false)
     }
 
+    const submitSearchForm = useCallback(() => {
+        formRef.current?.submit()
+    }, [formRef.current])
+
     return (
         <>
             <div
@@ -209,7 +213,7 @@ function SearchBar({ className }: { className: string }) {
                         {searchResults.length > 0 && (
                             <button
                                 className={styles.moreBtn}
-                                onClick={() => formRef.current?.submit()}
+                                onClick={submitSearchForm}
                             >
                                 More
                             </button>

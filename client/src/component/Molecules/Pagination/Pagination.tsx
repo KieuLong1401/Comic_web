@@ -2,7 +2,7 @@
 
 import styles from './Pagination.module.css'
 
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import Link from 'next/link'
 
@@ -19,18 +19,21 @@ const Pagination: React.FC<PaginationProps> = ({ page, lastPage }) => {
     var startPage = 1
     var endPage = lastPage
 
-    function handleChangePageInputValue(e) {
-        const value: string = e.target.value
-        const intValue = parseInt(value)
-        if (value != '' && !value.match(/^[0-9]+$/)) return
-        setPageInputValue(value)
-        if (intValue < 1 || intValue > lastPage) {
-            setInputErr(`Nhập số trong phạm vi (1-${lastPage})`)
-            return
-        }
+    const handleChangePageInputValue = useCallback(
+        (e) => {
+            const value: string = e.target.value
+            const intValue = parseInt(value)
+            if (value != '' && !value.match(/^[0-9]+$/)) return
+            setPageInputValue(value)
+            if (intValue < 1 || intValue > lastPage) {
+                setInputErr(`Nhập số trong phạm vi (1-${lastPage})`)
+                return
+            }
 
-        setInputErr(null)
-    }
+            setInputErr(null)
+        },
+        [lastPage]
+    )
 
     if (lastPage > step * 2 + 3) {
         if (page > step + 3) {
