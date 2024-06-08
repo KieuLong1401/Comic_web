@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import DisableSSR from '@/component/Atoms/DisableSSR/DisableSSR'
 
 export default ({ className }: { className?: string }) => {
-    const [user, setUser] = useState<any>(localStorage.getItem('user'))
+    const [user, setUser] = useState<any>(null)
 
     useEffect(() => {
         if (localStorage.getItem('user') == null) return
