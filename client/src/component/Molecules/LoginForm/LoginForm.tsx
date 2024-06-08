@@ -34,7 +34,7 @@ export default () => {
                 setError(err.response.data)
             }
         },
-        [formValues, localStorage, router]
+        [formValues, router]
     )
 
     return (
