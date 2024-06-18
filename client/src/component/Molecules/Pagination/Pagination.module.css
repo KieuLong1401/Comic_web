@@ -4,18 +4,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 1.25rem;
 }
 .rowPaginationContainer {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 5px;
+    gap: 0.25rem;
 }
 .pageLink {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     border: solid transparent 2px;
     border-radius: var(--border-radius);
     display: flex;
@@ -36,11 +36,11 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    column-gap: 20px;
+    column-gap: 1.25rem;
 }
 .preNextBtnContainer a {
-    width: 100px;
-    height: 30px;
+    width: 6rem;
+    height: 2rem;
     background-color: var(--main-color);
     border-radius: var(--border-radius);
     display: flex;
@@ -55,11 +55,11 @@
 .fastPagination {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 0.75rem;
 }
 .fastPagination input {
-    width: 60px;
-    padding: 5px;
+    width: 3.75rem;
+    padding: 0.25rem;
     border: solid 2px transparent;
     border-radius: var(--border-radius);
 }
@@ -68,8 +68,8 @@
     outline: none;
 }
 .fastPagination a {
-    width: 40px;
-    height: 30px;
+    width: 2.5rem;
+    height: 2rem;
     background-color: var(--main-color);
     border-radius: var(--border-radius);
     display: flex;

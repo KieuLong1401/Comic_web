@@ -5,12 +5,12 @@
     margin-right: 0;
     display: flex;
     justify-self: flex-end;
-    gap: 5px;
+    gap: 0.25rem;
 }
 
 .buttonContainer>button {
     width: 80px;
-    height: 30px;
+    height: 2rem;
     border-radius: var(--border-radius);
 }
 
@@ -30,6 +30,6 @@
     filter: brightness(75%);
 }
 .userName {
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: right;
 }

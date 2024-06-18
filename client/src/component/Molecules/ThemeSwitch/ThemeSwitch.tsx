@@ -41,8 +41,8 @@ function ThemeSwitch({ className }: { className: string }) {
                 <FontAwesomeIcon
                     icon={faSun}
                     style={{
-                        width: '15px',
-                        height: '15px',
+                        width: '1rem',
+                        height: '1rem',
                     }}
                     className={`${styles.sunIcon} ${
                         theme == 'light' ? styles.active : ''
@@ -51,8 +51,8 @@ function ThemeSwitch({ className }: { className: string }) {
                 <FontAwesomeIcon
                     icon={faMoon}
                     style={{
-                        width: '15px',
-                        height: '15px',
+                        width: '1rem',
+                        height: '1rem',
                     }}
                     className={`${styles.moonIcon} ${
                         theme == 'light' ? '' : styles.active

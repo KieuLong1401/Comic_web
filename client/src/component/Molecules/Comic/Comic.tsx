@@ -29,6 +29,7 @@ const Comic: React.FC<comicProps> = async ({ data }) => {
                     src={data.comic_image_src}
                     alt=''
                     fill
+                    sizes='(max-width: 390px) 100vw, (max-width: 580px) 30vw, 15vw'
                     priority
                 />
                 <div className={styles.info}>

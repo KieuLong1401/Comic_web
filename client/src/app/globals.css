@@ -1,8 +1,9 @@
 :root {
+    font-size: 1rem;
     --max-width: 1200px;
-    --header-height: 40px;
-    --footer-height: 50px;
-    --border-radius: 5px;
+    --header-height: 2.5rem;
+    --footer-height: 3rem;
+    --border-radius: 0.25rem;
     --main-color: rgba(70, 130, 180, 1);
     --theme-color: rgba(26, 26, 26, 1);
     --theme-color-50: rgba(26, 26, 26, 0.5);
@@ -14,10 +15,10 @@
     --reverse-theme-color-5: rgba(245, 245, 245, 0.05);
     --main-text-color: rgba(255, 255, 255, 1);
     --box-shadow-color: rgba(128, 128, 128, 0.15);
-    --small-font-size: 12px;
-    --medium-font-size: 16px;
-    --big-font-size: 20px;
-    --large-font-size: 32px;
+    --small-font-size: 0.75rem;
+    --medium-font-size: 1rem;
+    --big-font-size: 1.25rem;
+    --large-font-size: 2rem;
 }
 
 [data-theme='light'] {
@@ -79,7 +80,7 @@ img {
     width: var(--max-width);
     min-height: calc(100dvh - var(--header-height) - var(--footer-height));
     background-color: var(--reverse-theme-color-5);
-    padding: 15px;
+    padding: 1rem;
     align-self: center;
 }
 

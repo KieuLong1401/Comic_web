@@ -2,13 +2,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 0.75rem;
     font-size: var(--medium-font-size);
+    font-weight: 500;
 }
 
 .categoryBtn {
     display: flex;
-    gap: 3px;
+    gap: 0.25rem;
     cursor: pointer;
 }
 
@@ -18,15 +19,15 @@
 }
 
 .triangleIcon {
-    width: 10px;
+    width: 0.75rem;
 }
 
 .categoryContainer {
     width: var(--max-width);
-    height: min(600px, calc(100svh - 80px));
+    height: min(35rem, calc(100svh - 80px));
     background-color: var(--theme-color);
     border-radius: var(--border-radius);
-    box-shadow: 0px 0px 5px var(--box-shadow-color);
+    box-shadow: 0px 0px 0.25rem var(--box-shadow-color);
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -38,19 +39,19 @@
 .categories {
     width: 100%;
     height: calc(100% - 80px);
-    padding: 20px;
+    padding: 1.25rem;
     border-bottom: 2px solid var(--main-color);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-items: start;
-    row-gap: 20px;
-    column-gap: 50px;
+    row-gap: 1.25rem;
+    column-gap: 3rem;
     overflow-x: auto;
 }
 
 .categoryItem {
-    width: 110px;
+    width: 7.5rem;
 }
 
 .container>a:hover,
@@ -61,9 +62,9 @@
 
 .description {
     width: 100%;
-    height: 80px;
+    height: 5rem;
     background-color: var(--reverse-theme-color-15);
-    padding: 10px;
+    padding: 0.75rem;
     color: var(--reverse-theme-color-50);
 }
 
@@ -71,22 +72,22 @@
     width: 75vw;
     height: calc(100dvh - var(--header-height));
     background-color: var(--theme-color);
-    padding: 10px;
+    padding: 0.75rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 1.25rem;
     overflow-y: scroll;
 }
 
 .dropDown .categoryContainer {
     width: 99%;
     height: 50vh;
-    min-height: 300px;
+    min-height: 18rem;
     max-height: none;
     background-color: transparent;
     box-shadow: none;
     position: relative;
-    top: 0px !important;
+    top: 0 !important;
     left: 1% !important;
     transform: none;
     z-index: 10000;
@@ -95,7 +96,7 @@
 .dropDown .categories {
     width: 100%;
     height: 100%;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 0.75rem;
     border: none;
     border-left: 2px solid var(--reverse-theme-color-50);
     flex-wrap: nowrap;
@@ -104,9 +105,9 @@
 
 .accountLinkContainer {
     width: 100%;
-    padding-top: 10px;
+    padding-top: 0.75rem;
     border-top: solid 2px var(--main-color);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
 }

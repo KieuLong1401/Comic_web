@@ -13,32 +13,32 @@
 }
 
 .logo {
-    font-size: 32px;
+    font-size: 2rem;
     text-transform: uppercase;
 }
 
 .navbar {
-    margin-left: 15px;
+    margin-left: 1rem;
 }
 
 .searchBar {
-    margin-right: 10px;
+    margin-right: 0.75rem;
     margin-left: auto;
 }
 
 .themeSwitch {
-    margin-right: 10px;
+    margin-right: 0.75rem;
     justify-self: flex-end;
 }
 
 .menu {
-    padding-right: 10px;
+    padding-right: 0.75rem;
     display: none;
 }
 
 @media screen and (max-width: 1024px) {
     .logo {
-        margin-left: 10px;
+        margin-left: 0.75rem;
     }
 
     .navbar, .buttonContainer, .signAction {

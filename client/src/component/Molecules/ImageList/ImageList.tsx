@@ -19,13 +19,11 @@ export default ({
                     <Image
                         src={e.image_src}
                         alt=''
-                        width={995}
-                        height={2239}
+                        width={1000}
+                        height={700}
+                        sizes='100vw'
                         style={{
-                            display: 'block',
-                            position: 'unset',
                             width: '100%',
-                            maxWidth: '100%',
                             height: 'auto',
                         }}
                         onError={imageErrHandler}

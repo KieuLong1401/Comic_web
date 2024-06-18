@@ -15,7 +15,7 @@
     .container {
         flex-direction: column;
         justify-content: none;
-        row-gap: 30px;
+        row-gap: 2rem;
     }
     .childContainer {
         width: 100%;

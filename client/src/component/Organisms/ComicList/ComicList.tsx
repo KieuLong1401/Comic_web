@@ -26,6 +26,30 @@ const ComicList = async ({ page }: ComicListProps) => {
                         />
                     )
                 })}
+                {comicsData?.comics.map((e, i: number) => {
+                    return (
+                        <Comic
+                            data={e}
+                            key={i}
+                        />
+                    )
+                })}
+                {comicsData?.comics.map((e, i: number) => {
+                    return (
+                        <Comic
+                            data={e}
+                            key={i}
+                        />
+                    )
+                })}
+                {comicsData?.comics.map((e, i: number) => {
+                    return (
+                        <Comic
+                            data={e}
+                            key={i}
+                        />
+                    )
+                })}
             </div>
             <div className={styles.pagination}>
                 <Pagination

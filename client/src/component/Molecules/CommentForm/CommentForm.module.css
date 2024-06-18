@@ -1,10 +1,10 @@
 .commentForm {
     width: 100%;
-    padding-inline: 10px;
+    padding-inline: 0.75rem;
 }
 .commentForm textarea {
     width: 100%;
-    padding: 10px;
+    padding: 0.75rem;
     border: none;
     border-radius: var(--border-radius);
     outline: none;
@@ -17,8 +17,8 @@
 }
 .commentForm button {
     display: block;
-    padding: 5px;
-    margin: 10px 0 0 auto;
+    padding: 0.25rem;
+    margin: 0.75rem 0 0 auto;
     border-radius: var(--border-radius);
     background-color: var(--main-color);
     color: var(--theme-color);

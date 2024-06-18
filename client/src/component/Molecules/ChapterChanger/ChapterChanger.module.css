@@ -1,11 +1,11 @@
 .container {
     display: flex;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 0.75rem;
 }
 
 .chapterMenu {
-    padding: 5px;
+    padding: 0.25rem;
 }
 .disabled {
     pointer-events: none;

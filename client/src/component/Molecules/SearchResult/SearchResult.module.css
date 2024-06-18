@@ -1,30 +1,30 @@
 .container {
     width: 100%;
-    min-height: 100px;
+    min-height: 6.25rem;
     border-bottom: 2px solid var(--reverse-theme-color-15);
 }
 
 .comic {
     width: 100%;
-    height: 85px;
+    height: 5.25rem;
     display: flex;
     flex-direction: row;
 }
 
 .image {
-    width: 85px;
-    height: 85px;
+    width: 5.25rem;
+    height: 5.25rem;
     border-radius: var(--border-radius);
     position: relative;
     overflow: hidden;
 }
 
 .info {
-    width: calc(100% - 85px);
-    padding: 5px;
+    width: calc(100% - 5.25rem);
+    padding: 0.25rem;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0.25rem;
 }
 
 .name,
@@ -41,7 +41,7 @@
 }
 
 .name {
-    font-size: 16px;
+    font-size: 1rem;
 }
 .name:hover,
 .newestChapter:hover {
@@ -54,7 +54,7 @@
     align-items: center;
     flex-wrap: nowrap;
     position: relative;
-    column-gap: 10px;
+    column-gap: 0.75rem;
     overflow-x: hidden;
 }
 
@@ -66,7 +66,7 @@
 
 .categoryContainer::before {
     content: '';
-    width: 20px;
+    width: 1.25rem;
     height: 100%;
     background: linear-gradient(to right, transparent, var(--theme-color));
     position: absolute;
@@ -76,9 +76,9 @@
 }
 
 .category {
-    height: 20px;
+    height: 1.25rem;
     background-color: var(--main-color);
-    padding-inline: 5px;
+    padding-inline: 0.25rem;
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;

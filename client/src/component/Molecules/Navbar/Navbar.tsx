@@ -183,7 +183,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, menuDrop = false }) => {
                         : {}
                 }
             >
-                Theo Dõi
+                Following
             </Link>
             <Link
                 href={'/history'}
@@ -191,7 +191,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, menuDrop = false }) => {
                     path == '/history' ? { color: 'rgba(70, 130, 180, 1)' } : {}
                 }
             >
-                Lịch Sử
+                History
             </Link>
             <Link
                 href={'/filter'}
@@ -199,13 +199,13 @@ const Navbar: React.FC<NavbarProps> = ({ className, menuDrop = false }) => {
                     path == '/filter' ? { color: 'rgba(70, 130, 180, 1)' } : {}
                 }
             >
-                Lọc Truyện
+                Filter
             </Link>
             <div
                 className={styles.categoryBtn}
                 id={menuDrop ? 'category_dropDown' : 'category'}
             >
-                <h5>Thể Loại</h5>
+                <h5>Categories</h5>
                 <FontAwesomeIcon
                     icon={faCaretDown}
                     className={styles.triangleIcon}

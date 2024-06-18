@@ -1,9 +1,9 @@
 .container {
-    width: 150px;
-    height: 30px;
+    width: 9rem;
+    height: 2rem;
     background-color: var(--reverse-theme-color-15);
-    padding: 10px;
-    border-radius: 100px;
+    padding: 0.75rem;
+    border-radius: 6.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,8 +15,8 @@
 }
 
 .searchBtn {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     background-color: transparent;
     color: var(--reverse-theme-color-50);
 }
@@ -43,9 +43,9 @@
 }
 
 .model {
-    width: calc(100vw - 50px);
+    width: calc(100vw - 3rem);
     max-width: 700px;
-    height: calc(100svh - 50px);
+    height: calc(100svh - 3rem);
     background-color: var(--theme-color);
     position: absolute;
     top: 50%;
@@ -56,7 +56,7 @@
 
 .modelHeader {
     width: 100%;
-    height: 50px;
+    height: 3rem;
     border-bottom: var(--main-color) solid 2px;
     display: flex;
     flex-direction: row;
@@ -66,7 +66,7 @@
 
 .search {
     width: calc(100% - 90px);
-    height: 30px;
+    height: 2rem;
     background-color: var(--reverse-theme-color-15);
     border-radius: var(--border-radius);
     display: flex;
@@ -77,8 +77,8 @@
 }
 
 .search button {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     background-color: transparent;
     color: var(--reverse-theme-color-50);
 }
@@ -88,7 +88,7 @@
 }
 
 .search input {
-    width: calc(100% - 50px);
+    width: calc(100% - 3rem);
     height: 100%;
     background-color: transparent;
     border: none;
@@ -103,8 +103,8 @@
 }
 
 .modelCloseBtn {
-    width: 50px;
-    height: 30px;
+    width: 3rem;
+    height: 2rem;
     background-color: var(--main-color);
     border-radius: var(--border-radius);
     color: var(--theme-color);
@@ -115,18 +115,18 @@
 
 .searchResult {
     width: 100%;
-    height: calc(100% - 50px);
-    padding: 15px;
+    height: calc(100% - 3rem);
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    row-gap: 15px;
+    row-gap: 1rem;
     overflow-y: scroll;
 }
 
 .moreBtn {
-    width: 60px;
-    min-height: 30px;
+    width: 3.75rem;
+    min-height: 2rem;
     border-radius: var(--border-radius);
     align-self: center;
 }
@@ -142,7 +142,7 @@
 
 @media screen and (max-width: 480px) {
     .container {
-        width: 30px;
+        width: 2rem;
         justify-content: center;
     }
 

@@ -2,19 +2,19 @@
     width: 100%;
 }
 .title {
-    margin-bottom: 10px;
+    margin-bottom: 0.75rem;
     font-size: var(--big-font-size);
     color: var(--main-color);
 }
 .comicsContainer {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(145px, 250px));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1.25rem;
 }
 .pagination {
     width: 100%;
-    margin-top: 40px;
+    margin-top: 2.5rem;
     display: flex;
     justify-content: center;
 }
