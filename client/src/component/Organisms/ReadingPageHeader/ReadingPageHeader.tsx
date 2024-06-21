@@ -17,10 +17,10 @@ export default ({
     className?: string
 }) => {
     const [isScrollingDown, setIsScrollingDown] = useState<boolean>(false)
-    var lastScrollPos = 0
+    var lastScrollPos: number = 0
 
     const scrollHandler = useCallback(() => {
-        const scrolled = window.scrollY
+        const scrolled: number = window.scrollY
 
         if (lastScrollPos < scrolled) {
             setIsScrollingDown(true)
@@ -30,9 +30,9 @@ export default ({
         lastScrollPos = scrolled
     }, [])
 
-    useEffect(() => {
+    useEffect((): VoidFunction => {
         window.addEventListener('scroll', scrollHandler)
-        return () => window.removeEventListener('scroll', scrollHandler)
+        return (): void => window.removeEventListener('scroll', scrollHandler)
     }, [scrollHandler])
 
     return (
@@ -41,10 +41,16 @@ export default ({
             style={{ visibility: isScrollingDown ? 'hidden' : 'visible' }}
         >
             <Link href='/'>
-                <FontAwesomeIcon icon={faHome} />
+                <FontAwesomeIcon
+                    icon={faHome}
+                    color='white'
+                />
             </Link>
             <Link href={`/comic/${comic}`}>
-                <FontAwesomeIcon icon={faCircleArrowLeft} />
+                <FontAwesomeIcon
+                    icon={faCircleArrowLeft}
+                    color='white'
+                />
             </Link>
             <ChapterChanger
                 className={styles.chapterChanger}

@@ -83,34 +83,10 @@ const Comic = async ({ params }: { params: { comic: string } }) => {
                                                 className={styles.category}
                                                 key={i}
                                             >
-                                                {e}
+                                                {String(e).replace('-', '')}
                                             </a>
                                         )
                                     })}
-                                    <a
-                                        href=''
-                                        className={styles.category}
-                                    >
-                                        action
-                                    </a>
-                                    <a
-                                        href=''
-                                        className={styles.category}
-                                    >
-                                        action
-                                    </a>
-                                    <a
-                                        href=''
-                                        className={styles.category}
-                                    >
-                                        action
-                                    </a>
-                                    <a
-                                        href=''
-                                        className={styles.category}
-                                    >
-                                        action
-                                    </a>
                                 </div>
                             </div>
                         </div>

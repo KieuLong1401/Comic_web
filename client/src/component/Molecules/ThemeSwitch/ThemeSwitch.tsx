@@ -6,20 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
-function ThemeSwitch({ className }: { className: string }) {
+function ThemeSwitch({ className }: { className?: string }) {
     const { theme, setTheme } = useTheme()
-    const [isMounted, setIsMounted] = useState(false)
+    const [isMounted, setIsMounted] = useState<boolean>(false)
 
-    var classes = styles.container
+    var classes: string = styles.container
     if (className) {
         classes = classes + ' ' + className
     }
 
-    useEffect(() => {
+    useEffect((): void => {
         setIsMounted(true)
     }, [])
 
-    function changeTheme() {
+    function changeTheme(): void {
         setTheme(theme == 'dark' ? 'light' : 'dark')
         localStorage.setItem('theme', theme == 'dark' ? 'light' : 'dark')
     }

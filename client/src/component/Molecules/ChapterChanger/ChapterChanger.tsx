@@ -19,38 +19,52 @@ const ChapterChanger: React.FC<comicProps> = ({
     comic,
     chapter,
 }) => {
-    const [chapterList, setChapterList] = useState([])
+    const [chapterList, setChapterList] = useState<number[]>([])
 
-    const intChapter = parseInt(chapter.toString())
-    const nextChapter = intChapter + 1
-    const preChapter = intChapter - 1
-    const chapterLength = chapterList.length
+    const currentChapter: number = chapter
+    const nextChapterIndex: number = currentChapter + 1
+    const preChapterIndex: number = currentChapter - 1
+    const chapterLength: number = chapterList.length
 
-    useEffect(() => {
-        getChapter(comic).then((res) => setChapterList(res))
-    }, [])
+    useEffect((): void => {
+        getChapter(comic).then((res) =>
+            setChapterList(res.map((e) => e.chap_num))
+        )
+    }, [comic])
 
     return (
         <div className={`${styles.container} ${className ? className : ''}`}>
             <Link
-                href={`/comic/${comic}/${preChapter}`}
-                className={preChapter < 1 ? styles.disabled : ''}
+                href={`/comic/${comic}/${chapterList[preChapterIndex]}`}
+                className={preChapterIndex < 0 ? styles.disabled : ''}
             >
                 <FontAwesomeIcon icon={faArrowLeft} />
             </Link>
             <button
                 id='chapterMenu'
                 className={styles.chapterMenu}
-            >{`chapter ${intChapter}`}</button>
+            >{`chapter ${currentChapter}`}</button>
             <Tooltip
                 trigger='click'
                 triggerElementId='chapterMenu'
+                className={styles.chapterMenuDropDown}
             >
-                <div>sdfg</div>
+                {chapterList.map((e) => {
+                    return (
+                        <Link
+                            href={`/comic/${comic}/${e}`}
+                            className={styles.chapterLink}
+                        >
+                            chapter {e}
+                        </Link>
+                    )
+                })}
             </Tooltip>
             <Link
-                href={`/comic/${comic}/${nextChapter}`}
-                className={nextChapter > chapterLength ? styles.disabled : ''}
+                href={`/comic/${comic}/${chapterList[nextChapterIndex]}`}
+                className={
+                    nextChapterIndex > chapterLength ? styles.disabled : ''
+                }
             >
                 <FontAwesomeIcon icon={faArrowRight} />
             </Link>
